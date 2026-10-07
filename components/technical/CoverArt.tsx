@@ -191,68 +191,99 @@ function Arm() {
   );
 }
 
+/** KinePath: choosing the orientation (left), then slicing the part with a plane (right). */
 function Slicer() {
-  const cx = 520;
-  const layers = 9;
-  const contour = (i: number) => {
-    const size = 250 - i * 9;
-    const pts: string[] = [];
-    for (let k = 0; k <= 72; k++) {
-      const t = (k / 72) * Math.PI * 2;
-      const r = size * (1 + 0.1 * Math.cos(2 * t) + 0.04 * Math.cos(3 * t + i * 0.25));
-      pts.push(`${(cx + r * Math.cos(t)).toFixed(1)},${(690 - i * 48 + r * 0.34 * Math.sin(t)).toFixed(1)}`);
+  const n = (v: number) => v.toFixed(1);
+
+  // 01 — the same part in three orientations, isometric wireframe
+  const S = 33;
+  const OY = 520;
+  const iso = (x: number, y: number, z: number, ox: number) =>
+    `${n(ox + (x - y) * 0.866 * S)} ${n(OY + (x + y) * 0.5 * S - z * S)}`;
+  const box = ([x, y, z]: number[], [a, c, h]: number[], ox: number) => {
+    const v = (p: number[]) => iso(p[0], p[1], p[2], ox);
+    const corners = [
+      [x, y], [x + a, y], [x + a, y + c], [x, y + c],
+    ];
+    let d = "";
+    for (let i = 0; i < 4; i++) {
+      const [p, q] = [corners[i], corners[(i + 1) % 4]];
+      d += `M${v([...p, z])}L${v([...q, z])}M${v([...p, z + h])}L${v([...q, z + h])}M${v([...p, z])}L${v([...p, z + h])}`;
     }
-    return pts.join(" ");
+    return d;
   };
-  const code = [
-    "DEF part()",
-    "  $BASE = BASE_DATA[1]",
-    "  $TOOL = TOOL_DATA[11]",
-    "  LIN {X 212.40, Y -86.10, Z 38.50} C_DIS",
-    "  LIN {X 214.85, Y -84.72, Z 38.50} C_DIS",
-    "  LIN {X 217.31, Y -83.40, Z 38.50} C_DIS",
-    "  LIN {X 219.78, Y -82.14, Z 38.50} C_DIS",
-    "  ...",
-    "END",
+  const parts = [
+    { ox: 290, label: "+Z", on: false, boxes: [[[0, 0, 0], [1, 2, 3]], [[0, 0, 3], [3, 2, 1]]] },
+    { ox: 520, label: "ON SIDE −Y", on: true, boxes: [[[0, 0, 0], [3, 2, 1]], [[0, 0, 1], [1, 2, 3]]] },
+    { ox: 750, label: "+X", on: false, boxes: [[[0, 0, 0], [1, 2, 1]], [[2, 0, 2.6], [1, 2, 1]]] },
   ];
+
+  // 02 — a wireframe dome cut by a horizontal plane
+  const cx = 1230;
+  const base = 610;
+  const R = 235;
+  const K = 0.34;
+  const ring = (i: number) => {
+    const a = ((i / 8) * Math.PI) / 2;
+    const r = R * Math.cos(a);
+    return { r, y: base - R * Math.sin(a) * 0.95 };
+  };
+  const cut = ring(3);
+  const top = base - R * 0.95;
+
   return (
     <>
       <Grid id="g-slicer" />
-      {/* slices of the part, pulled apart */}
-      <line x1={cx} y1="760" x2={cx} y2="220" stroke={FG} strokeOpacity="0.25" strokeDasharray="14 4 3 4" />
-      {Array.from({ length: layers }, (_, i) => (
-        <polygon
-          key={i}
-          points={contour(i)}
-          fill="var(--color-surface)"
-          fillOpacity="0.55"
-          stroke={i === layers - 1 ? ACCENT : FG}
-          strokeOpacity={i === layers - 1 ? 1 : 0.2 + i * 0.05}
-          strokeWidth={i === layers - 1 ? 2.5 : 1.25}
-        />
-      ))}
-      <text x="250" y="170" fill="var(--color-muted)" fontSize="15" {...mono}>MESH / BREP</text>
-      <text x="250" y="198" fill="var(--color-dim)" fontSize="15" {...mono}>CONTOURS · TOL 0.2 MM</text>
 
-      {/* arrow */}
-      <path d="M880 450 H1000 M984 438 L1000 450 L984 462" stroke={ACCENT} strokeWidth="1.5" />
-
-      {/* generated program */}
-      <text x="1060" y="262" fill="var(--color-muted)" fontSize="15" {...mono}>PART.SRC</text>
-      <line x1="1060" y1="282" x2="1470" y2="282" stroke={FG} strokeOpacity="0.25" />
-      {code.map((line, i) => (
-        <text
-          key={i}
-          x="1060"
-          y={326 + i * 38}
-          fontSize="17"
-          fontFamily="var(--font-mono)"
-          fill={i === 4 ? ACCENT : "var(--color-muted)"}
-          xmlSpace="preserve"
-        >
-          {line}
-        </text>
+      <text x="182" y="250" fill={ACCENT} fontSize="15" {...mono}>01</text>
+      <text x="226" y="250" fill="var(--color-muted)" fontSize="15" {...mono}>ORIENTATION</text>
+      {parts.map((p) => (
+        <g key={p.label}>
+          <path
+            d={`M${p.ox - 108} ${OY + 34}L${p.ox} ${OY - 28}L${p.ox + 108} ${OY + 34}L${p.ox} ${OY + 96}Z`}
+            stroke={FG}
+            strokeOpacity="0.25"
+            strokeDasharray="4 8"
+          />
+          <path
+            d={p.boxes.map((b) => box(b[0], b[1], p.ox)).join("")}
+            stroke={p.on ? ACCENT : FG}
+            strokeOpacity={p.on ? 1 : 0.5}
+            strokeWidth={p.on ? 2.25 : 1.25}
+          />
+          <text x={p.ox} y="668" fill={p.on ? ACCENT : "var(--color-muted)"} fontSize="14" textAnchor="middle" {...mono}>
+            {p.label}
+          </text>
+        </g>
       ))}
+
+      <path d="M866 500H918M904 489L918 500L904 511" stroke={ACCENT} strokeWidth="1.5" />
+
+      <text x="1030" y="250" fill={ACCENT} fontSize="15" {...mono}>02</text>
+      <text x="1074" y="250" fill="var(--color-muted)" fontSize="15" {...mono}>SLICING · PLANE ∩ MESH</text>
+      {Array.from({ length: 7 }, (_, i) => {
+        const { r, y } = ring(i + 1);
+        return <ellipse key={i} cx={cx} cy={n(y)} rx={n(r)} ry={n(r * K)} stroke={FG} strokeOpacity="0.22" />;
+      })}
+      <ellipse cx={cx} cy={base} rx={R} ry={n(R * K)} stroke={FG} strokeOpacity="0.5" strokeWidth="1.5" />
+      {Array.from({ length: 12 }, (_, j) => {
+        const t = (j / 12) * Math.PI;
+        const ex = R * Math.cos(t);
+        const ez = R * K * Math.sin(t);
+        return (
+          <g key={j} stroke={FG}>
+            <path d={`M${n(cx + ex)} ${n(base + ez)}Q${n(cx + ex * 0.9)} ${n(base - R * 1.05 + ez * 0.2)} ${cx} ${n(top)}`} strokeOpacity="0.2" />
+            <path d={`M${n(cx - ex)} ${n(base - ez)}Q${n(cx - ex * 0.9)} ${n(base - R * 1.05 - ez * 0.2)} ${cx} ${n(top)}`} strokeOpacity="0.12" />
+          </g>
+        );
+      })}
+      <path
+        d={`M${cx - 300} ${n(cut.y + 52)}L${cx - 190} ${n(cut.y - 84)}H${cx + 300}L${cx + 190} ${n(cut.y + 52)}Z`}
+        stroke={FG}
+        strokeOpacity="0.35"
+        strokeDasharray="6 8"
+      />
+      <ellipse cx={cx} cy={n(cut.y)} rx={n(cut.r)} ry={n(cut.r * K)} stroke={ACCENT} strokeWidth="2.75" />
     </>
   );
 }
