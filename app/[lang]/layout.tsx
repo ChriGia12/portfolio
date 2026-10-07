@@ -71,6 +71,9 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
   return (
     <html
       lang={lang}
+      // Tells Next the page uses smooth scrolling, so it switches it off while
+      // navigating: without this, a new page could open scrolled to the bottom.
+      data-scroll-behavior="smooth"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { ZoomImage } from "./ZoomImage";
 import type { Media } from "@/lib/types";
 import { asset } from "@/lib/asset";
 import { ui, type Locale } from "@/lib/i18n";
@@ -58,13 +58,14 @@ export function MediaFrame({
               aria-label={media.alt ?? media.label}
             />
           ) : (
-            <Image
+            <ZoomImage
               src={asset(media.src)}
               alt={media.alt ?? media.label}
-              fill
               sizes={sizes}
               priority={priority}
               className={fit}
+              zoomLabel={ui[lang].a11y.zoom}
+              closeLabel={ui[lang].a11y.close}
             />
           )
         ) : (

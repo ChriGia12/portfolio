@@ -6,7 +6,7 @@ import { CaseNav } from "./CaseNav";
 import { SystemDiagram } from "./SystemDiagram";
 import { CodeBlock } from "./CodeBlock";
 
-const wide = (aspect?: string) => aspect === "16/9" || aspect === "21/9";
+const wide = (aspect?: string) => aspect === "16/9" || aspect === "21/9" || aspect === "2/1";
 
 export function CaseStudy({ lang, project }: { lang: Locale; project: Project }) {
   const sections = project.caseStudy ?? [];
