@@ -191,7 +191,7 @@ function Arm() {
   );
 }
 
-export function CoverArt({ kind, title }: { kind: CoverArtKind; title: string }) {
+export function CoverArt({ kind, label }: { kind: CoverArtKind; label: string }) {
   return (
     <svg
       viewBox="0 0 1600 900"
@@ -199,7 +199,7 @@ export function CoverArt({ kind, title }: { kind: CoverArtKind; title: string })
       className="absolute inset-0 h-full w-full"
       fill="none"
       role="img"
-      aria-label={`Technical drawing for ${title}`}
+      aria-label={label}
     >
       <rect width="1600" height="900" fill="var(--color-surface)" />
       {kind === "toolpath" ? <Toolpath /> : <Arm />}

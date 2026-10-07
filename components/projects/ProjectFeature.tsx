@@ -2,23 +2,27 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Project } from "@/lib/types";
 import { asset } from "@/lib/asset";
+import { href, ui, type Locale } from "@/lib/i18n";
 import { CoverArt } from "@/components/technical/CoverArt";
 import { CropMarks } from "@/components/ui/MediaFrame";
 
 /** Large project entry: big image, title block underneath. Not a card. */
 export function ProjectFeature({
+  lang,
   project,
   index,
   priority = false,
 }: {
+  lang: Locale;
   project: Project;
   index: number;
   priority?: boolean;
 }) {
   const number = String(index + 1).padStart(2, "0");
+  const t = ui[lang];
   return (
     <article>
-      <Link href={`/projects/${project.slug}`} className="group block">
+      <Link href={href(lang, `/projects/${project.slug}`)} className="group block">
         <div className="relative aspect-[4/3] overflow-hidden border border-line bg-surface sm:aspect-[16/9]">
           <div className="absolute inset-0 transition-transform duration-[1100ms] ease-out-expo group-hover:scale-[1.03]">
             {project.cover?.src ? (
@@ -31,7 +35,7 @@ export function ProjectFeature({
                 className="object-cover"
               />
             ) : (
-              <CoverArt kind={project.coverArt} title={project.title} />
+              <CoverArt kind={project.coverArt} label={`${t.a11y.drawing} ${project.title}`} />
             )}
           </div>
           <CropMarks />
@@ -41,7 +45,7 @@ export function ProjectFeature({
               {project.status === "in-development" && (
                 <span aria-hidden className="h-1.5 w-1.5 bg-accent [animation:pulse-dot_2s_ease-in-out_infinite]" />
               )}
-              {project.status === "in-development" ? "In development" : "Case study"}
+              {project.status === "in-development" ? t.projects.inDev : t.projects.caseStudy}
             </span>
           </div>
         </div>
@@ -63,7 +67,7 @@ export function ProjectFeature({
           </div>
           <div className="md:col-span-5">
             <p className="text-base leading-relaxed text-muted">{project.summary}</p>
-            <ul className="mt-5 flex flex-wrap gap-2" aria-label="Main technologies">
+            <ul className="mt-5 flex flex-wrap gap-2" aria-label={t.a11y.tech}>
               {project.stack.map((t) => (
                 <li key={t} className="label border border-line px-2 py-1 text-muted">
                   {t}

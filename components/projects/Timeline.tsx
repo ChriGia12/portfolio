@@ -1,12 +1,8 @@
 import type { PhaseStatus, TimelinePhase } from "@/lib/types";
+import { ui, type Locale } from "@/lib/i18n";
 import { Reveal } from "@/components/ui/Reveal";
 import { MediaFrame } from "@/components/ui/MediaFrame";
 
-const statusLabel: Record<PhaseStatus, string> = {
-  done: "Done",
-  "in-progress": "In progress",
-  planned: "Planned",
-};
 
 function Marker({ status }: { status: PhaseStatus }) {
   if (status === "in-progress")
@@ -16,7 +12,9 @@ function Marker({ status }: { status: PhaseStatus }) {
 }
 
 /** Engineering log: one entry per phase, each ready to take updates and media. */
-export function Timeline({ phases }: { phases: TimelinePhase[] }) {
+export function Timeline({ lang, phases }: { lang: Locale; phases: TimelinePhase[] }) {
+  const t = ui[lang].projects;
+  const statusLabel = t.status;
   const done = phases.filter((p) => p.status === "done").length;
   const current = phases.find((p) => p.status === "in-progress");
 
@@ -24,11 +22,11 @@ export function Timeline({ phases }: { phases: TimelinePhase[] }) {
     <div>
       <div className="flex flex-wrap items-end justify-between gap-4 border-b border-line pb-6">
         <p className="label text-muted">
-          {done} / {phases.length} phases complete
+          {done} / {phases.length} {t.phasesComplete}
           {current && (
             <>
               <span className="mx-2 text-dim">·</span>
-              <span className="text-accent">Now: {current.title}</span>
+              <span className="text-accent">{t.now}: {current.title}</span>
             </>
           )}
         </p>
@@ -58,7 +56,7 @@ export function Timeline({ phases }: { phases: TimelinePhase[] }) {
               <div className="grid gap-x-8 gap-y-5 lg:grid-cols-12">
                 <div className="lg:col-span-5">
                   <p className="label text-dim">
-                    Phase {String(i + 1).padStart(2, "0")}
+                    {t.phase} {String(i + 1).padStart(2, "0")}
                     <span className="mx-2">·</span>
                     <span className={phase.status === "in-progress" ? "text-accent" : phase.status === "done" ? "text-fg" : ""}>
                       {statusLabel[phase.status]}
@@ -73,7 +71,7 @@ export function Timeline({ phases }: { phases: TimelinePhase[] }) {
                   <p className="leading-relaxed text-muted">{phase.summary}</p>
 
                   {phase.goals && (
-                    <ul className="mt-4 flex flex-wrap gap-2" aria-label="Goals">
+                    <ul className="mt-4 flex flex-wrap gap-2" aria-label={ui[lang].a11y.goals}>
                       {phase.goals.map((g) => (
                         <li key={g} className="label border border-line px-2 py-1 text-muted">
                           {g}
@@ -83,9 +81,9 @@ export function Timeline({ phases }: { phases: TimelinePhase[] }) {
                   )}
 
                   <div className="mt-6">
-                    <h4 className="label text-dim">Log</h4>
+                    <h4 className="label text-dim">{t.logLabel}</h4>
                     {phase.updates.length === 0 ? (
-                      <p className="mt-2 font-mono text-xs text-dim">— No entries yet.</p>
+                      <p className="mt-2 font-mono text-xs text-dim">— {t.noEntries}</p>
                     ) : (
                       <ul className="mt-3 space-y-5">
                         {phase.updates.map((u) => (
@@ -97,7 +95,7 @@ export function Timeline({ phases }: { phases: TimelinePhase[] }) {
                             {u.media && (
                               <div className="mt-4 grid gap-4 sm:grid-cols-2">
                                 {u.media.map((m) => (
-                                  <MediaFrame key={m.label} media={m} sizes="(min-width: 640px) 30vw, 100vw" />
+                                  <MediaFrame key={m.label} lang={lang} media={m} sizes="(min-width: 640px) 30vw, 100vw" />
                                 ))}
                               </div>
                             )}
@@ -110,7 +108,7 @@ export function Timeline({ phases }: { phases: TimelinePhase[] }) {
                   {phase.media && (
                     <div className="mt-6 grid gap-4 sm:grid-cols-2">
                       {phase.media.map((m) => (
-                        <MediaFrame key={m.label} media={m} sizes="(min-width: 640px) 30vw, 100vw" />
+                        <MediaFrame key={m.label} lang={lang} media={m} sizes="(min-width: 640px) 30vw, 100vw" />
                       ))}
                     </div>
                   )}

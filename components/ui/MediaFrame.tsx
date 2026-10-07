@@ -1,14 +1,8 @@
 import Image from "next/image";
 import type { Media } from "@/lib/types";
 import { asset } from "@/lib/asset";
+import { ui, type Locale } from "@/lib/i18n";
 
-const kindLabel: Record<Media["kind"], string> = {
-  image: "Photo",
-  video: "Video",
-  cad: "CAD",
-  screenshot: "Screenshot",
-  code: "Code",
-};
 
 /** Four corner crop marks, the recurring "drawing sheet" detail. */
 export function CropMarks({ className = "" }: { className?: string }) {
@@ -28,17 +22,20 @@ export function CropMarks({ className = "" }: { className?: string }) {
  * without it, a placeholder that names the file to add.
  */
 export function MediaFrame({
+  lang,
   media,
   sizes = "(min-width: 1024px) 60vw, 100vw",
   showCaption = true,
   priority = false,
 }: {
+  lang: Locale;
   media: Media;
   sizes?: string;
   showCaption?: boolean;
   priority?: boolean;
 }) {
   const aspect = (media.aspect ?? "16/9").replace("/", " / ");
+  const kindLabel = ui[lang].projects.kinds;
 
   return (
     <figure className="min-w-0">
@@ -71,7 +68,7 @@ export function MediaFrame({
             <div aria-hidden className="sheet-grid fade-edges absolute inset-0 opacity-50" />
             <CropMarks />
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 px-6 text-center">
-              <span className="label text-dim">{kindLabel[media.kind]} placeholder</span>
+              <span className="label text-dim">{kindLabel[media.kind]} {ui[lang].projects.placeholder}</span>
               <span className="text-sm text-muted">{media.label}</span>
               {media.hint && (
                 <span className="max-w-full break-all font-mono text-[10px] leading-4 text-dim">

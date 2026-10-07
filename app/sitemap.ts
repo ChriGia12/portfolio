@@ -1,20 +1,28 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/content/site";
-import { projects } from "@/content/projects";
+import { slugs } from "@/content/projects";
+import { locales } from "@/lib/i18n";
 
 // Required for the static export used on GitHub Pages.
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const pages = ["", "/projects", "/about", "/cv", "/contact"].map((path) => ({
-    url: `${site.url}${path}`,
-    changeFrequency: "monthly" as const,
-    priority: path === "" ? 1 : 0.7,
-  }));
-  const projectPages = projects.map((p) => ({
-    url: `${site.url}/projects/${p.slug}`,
-    changeFrequency: "monthly" as const,
-    priority: 0.9,
-  }));
-  return [...pages, ...projectPages];
+  const paths = [
+    "",
+    "/projects",
+    ...slugs.map((slug) => `/projects/${slug}`),
+    "/about",
+    "/cv",
+    "/contact",
+  ];
+  return locales.flatMap((lang) =>
+    paths.map((path) => ({
+      url: `${site.url}/${lang}${path}`,
+      changeFrequency: "monthly" as const,
+      priority: path === "" ? 1 : path.startsWith("/projects/") ? 0.9 : 0.7,
+      alternates: {
+        languages: Object.fromEntries(locales.map((l) => [l, `${site.url}/${l}${path}`])),
+      },
+    })),
+  );
 }

@@ -1,18 +1,19 @@
 import { skills } from "@/content/skills";
+import { ui, type Locale } from "@/lib/i18n";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 
 /** Capabilities grouped by area, laid out like a parts list. No bars. */
-export function Skills({ index }: { index?: string }) {
+export function Skills({ lang, index }: { lang: Locale; index?: string }) {
   return (
     <section aria-labelledby="skills-title" className="shell py-24 lg:py-32">
       <SectionLabel index={index}>
-        <span id="skills-title">Skills</span>
+        <span id="skills-title">{ui[lang].skills.label}</span>
       </SectionLabel>
 
       <Reveal className="mt-10">
         <div className="grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
-          {skills.map((group, i) => (
+          {skills[lang].map((group, i) => (
             <div key={group.area} className="bg-bg p-6 lg:p-7">
               <p className="label text-dim">{String.fromCharCode(65 + i)}</p>
               <h3 className="mt-3 text-xl font-medium tracking-tight">{group.area}</h3>

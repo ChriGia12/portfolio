@@ -1,4 +1,5 @@
 import { isPlaceholder, site } from "@/content/site";
+import { ui, type Locale } from "@/lib/i18n";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 
@@ -18,19 +19,28 @@ const channels = [
   },
 ];
 
-export function Contact({ index, as: Heading = "h2" }: { index?: string; as?: "h1" | "h2" }) {
+export function Contact({
+  lang,
+  index,
+  as: Heading = "h2",
+}: {
+  lang: Locale;
+  index?: string;
+  as?: "h1" | "h2";
+}) {
+  const t = ui[lang].contact;
   return (
     <section aria-labelledby="contact-title" className="shell py-24 lg:py-36">
-      <SectionLabel index={index}>Contact</SectionLabel>
+      <SectionLabel index={index}>{t.label}</SectionLabel>
 
       <Reveal>
         <Heading
           id="contact-title"
           className="mt-8 text-[clamp(2.75rem,9vw,7.5rem)] font-medium leading-[0.95] tracking-[-0.045em]"
         >
-          Let&rsquo;s build
+          {t.title[0]}
           <br />
-          something<span className="text-accent">.</span>
+          {t.title[1]}<span className="text-accent">.</span>
         </Heading>
       </Reveal>
 

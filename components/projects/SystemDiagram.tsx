@@ -1,7 +1,15 @@
 import type { PipelineNode } from "@/lib/types";
 
 /** Pipeline as a row of stages: what each one does and what it hands on. */
-export function SystemDiagram({ nodes }: { nodes: PipelineNode[] }) {
+export function SystemDiagram({
+  nodes,
+  caption,
+  outLabel,
+}: {
+  nodes: PipelineNode[];
+  caption: string;
+  outLabel: string;
+}) {
   return (
     <figure>
       <ol className="grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
@@ -15,16 +23,14 @@ export function SystemDiagram({ nodes }: { nodes: PipelineNode[] }) {
             <p className="mt-2 text-sm leading-relaxed text-muted">{n.role}</p>
             {n.output && (
               <p className="label mt-auto pt-5 text-dim">
-                Out <span className="mx-1 text-accent">▸</span>
+                {outLabel} <span className="mx-1 text-accent">▸</span>
                 <span className="text-muted">{n.output}</span>
               </p>
             )}
           </li>
         ))}
       </ol>
-      <figcaption className="label mt-3 text-dim">
-        System architecture — from geometry to printed part
-      </figcaption>
+      <figcaption className="label mt-3 text-dim">{caption}</figcaption>
     </figure>
   );
 }

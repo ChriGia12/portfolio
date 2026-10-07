@@ -21,6 +21,18 @@ npm run build    # production build
 
 Layout and components never need to change to update content.
 
+## Languages (EN / IT)
+
+Every page exists at `/en/...` and `/it/...`; the EN / IT button in the header
+switches to the same page in the other language. The site root sends visitors
+to their last choice, or to Italian if the browser is set to Italian.
+
+- Interface and page copy (nav, hero, About, buttons): `lib/i18n.ts`, one
+  `en` and one `it` block with the same keys.
+- Projects, skills, experience: each content file holds an `en` and an `it`
+  version side by side. When you change one, change the other.
+- Personal data in `content/site.ts` is shared by both languages.
+
 ## Placeholders to replace
 
 Search the project for `[` and `TODO`. In short:
@@ -68,8 +80,12 @@ updates: [
 The page, the card, the sitemap and the previous/next navigation are generated
 from that. Use `caseStudy` for a finished project, `timeline` for one in progress.
 
-## Deploy on Vercel
+## Deploy
 
-Push the repository to GitHub, import it on vercel.com, keep the defaults.
-Then set the real domain in `content/site.ts` (`url`) — it drives canonical
+**GitHub Pages (current):** every push to `main` runs
+`.github/workflows/deploy.yml`, which builds a static export and publishes it
+at https://chrigia12.github.io/portfolio/.
+
+**Vercel (alternative):** import the repository on vercel.com and keep the
+defaults; set `NEXT_PUBLIC_SITE_URL` to the real domain — it drives canonical
 URLs, the sitemap and social previews.

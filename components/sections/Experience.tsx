@@ -1,17 +1,19 @@
 import { experience } from "@/content/experience";
+import { ui, type Locale } from "@/lib/i18n";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 
-export function Experience({ index }: { index?: string }) {
+export function Experience({ lang, index }: { lang: Locale; index?: string }) {
+  const t = ui[lang].experience;
   return (
     <section aria-labelledby="experience-title" className="shell py-24 lg:py-32">
       <SectionLabel index={index}>
-        <span id="experience-title">Experience &amp; Education</span>
+        <span id="experience-title">{t.label}</span>
       </SectionLabel>
 
       <Reveal className="mt-10">
         <ul className="border-t border-line">
-          {experience.map((e) => (
+          {experience[lang].map((e) => (
             <li
               key={e.title + e.organisation}
               className="grid gap-x-8 gap-y-2 border-b border-line py-7 md:grid-cols-12"
@@ -26,7 +28,7 @@ export function Experience({ index }: { index?: string }) {
                   <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-muted">{e.description}</p>
                 )}
               </div>
-              <p className="label pt-1.5 text-muted md:col-span-2 md:text-right">{e.type}</p>
+              <p className="label pt-1.5 text-muted md:col-span-2 md:text-right">{t.types[e.type]}</p>
             </li>
           ))}
         </ul>

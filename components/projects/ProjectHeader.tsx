@@ -2,15 +2,17 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Project } from "@/lib/types";
 import { asset } from "@/lib/asset";
+import { href, ui, type Locale } from "@/lib/i18n";
 import { isPlaceholder } from "@/content/site";
 import { CoverArt } from "@/components/technical/CoverArt";
 import { CropMarks } from "@/components/ui/MediaFrame";
 
-export function ProjectHeader({ project }: { project: Project }) {
+export function ProjectHeader({ lang, project }: { lang: Locale; project: Project }) {
+  const t = ui[lang];
   return (
     <header className="shell pt-10 sm:pt-16">
-      <Link href="/projects" className="label text-muted transition-colors hover:text-fg">
-        ← All projects
+      <Link href={href(lang, "/projects")} className="label text-muted transition-colors hover:text-fg">
+        ← {t.projects.back}
       </Link>
 
       <div className="mt-10 grid gap-x-8 gap-y-8 lg:grid-cols-12">
@@ -51,7 +53,7 @@ export function ProjectHeader({ project }: { project: Project }) {
             className="object-cover"
           />
         ) : (
-          <CoverArt kind={project.coverArt} title={project.title} />
+          <CoverArt kind={project.coverArt} label={`${t.a11y.drawing} ${project.title}`} />
         )}
         <CropMarks />
       </div>

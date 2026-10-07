@@ -1,14 +1,16 @@
 import { ImageResponse } from "next/og";
 import { site } from "@/content/site";
+import { ui } from "@/lib/i18n";
 
 // Required for the static export used on GitHub Pages.
 export const dynamic = "force-static";
 
-export const alt = `${site.name} — ${site.role}`;
-export const size = { width: 1200, height: 630 };
-export const contentType = "image/png";
+const { role, focus } = ui.en.site;
 
-export default function OpengraphImage() {
+const size = { width: 1200, height: 630 };
+
+/** Social preview image, served as /og.png (referenced in app/[lang]/layout.tsx). */
+export function GET() {
   return new ImageResponse(
     (
       <div
@@ -29,9 +31,9 @@ export default function OpengraphImage() {
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ fontSize: 112, lineHeight: 1, letterSpacing: -5 }}>{site.name}</div>
-          <div style={{ marginTop: 28, fontSize: 36, color: "#ededef" }}>{site.role}</div>
+          <div style={{ marginTop: 28, fontSize: 36, color: "#ededef" }}>{role}</div>
           <div style={{ marginTop: 12, fontSize: 26, letterSpacing: 3, color: "#8b8b93" }}>
-            {site.focus.join("  •  ").toUpperCase()}
+            {focus.join("  •  ").toUpperCase()}
           </div>
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", fontSize: 20, letterSpacing: 3, color: "#5c5c63" }}>

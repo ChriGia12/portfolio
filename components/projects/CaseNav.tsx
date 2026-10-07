@@ -3,7 +3,13 @@
 import { useEffect, useState } from "react";
 
 /** Sticky table of contents that highlights the section in view. */
-export function CaseNav({ sections }: { sections: { id: string; title: string }[] }) {
+export function CaseNav({
+  sections,
+  label,
+}: {
+  sections: { id: string; title: string }[];
+  label: string;
+}) {
   const [active, setActive] = useState(sections[0]?.id);
 
   useEffect(() => {
@@ -22,7 +28,7 @@ export function CaseNav({ sections }: { sections: { id: string; title: string }[
   }, [sections]);
 
   return (
-    <nav aria-label="Case study sections">
+    <nav aria-label={label}>
       <ol className="space-y-2.5">
         {sections.map((s, i) => {
           const on = s.id === active;

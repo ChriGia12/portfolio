@@ -7,9 +7,15 @@ const staticExport = process.env.STATIC_EXPORT === "true";
 
 const nextConfig: NextConfig = {
   basePath,
+  experimental: { globalNotFound: true },
   ...(staticExport
-    ? { output: "export" as const, trailingSlash: true, images: { unoptimized: true } }
-    : {}),
+    ? // Static hosting: "/" is served by public/index.html, which picks the language.
+      { output: "export" as const, trailingSlash: true, images: { unoptimized: true } }
+    : {
+        async redirects() {
+          return [{ source: "/", destination: "/en", permanent: false }];
+        },
+      }),
   turbopack: {
     rules: {
       "*.css": {

@@ -1,15 +1,10 @@
 /**
  * Personal data lives here — the only file you need to edit for name,
  * links and contact details. Values wrapped in [BRACKETS] are placeholders.
+ * Translated texts (role, tagline, page copy) are in `lib/i18n.ts`.
  */
 export const site = {
   name: "Christian Giancola",
-  role: "Mechanical Engineering Student",
-  focus: ["Robotics", "Automation", "Digital Manufacturing"],
-  tagline:
-    "I design physical systems and the software that drives them — for robotics and advanced manufacturing.",
-  description:
-    "Portfolio of Christian Giancola, Mechanical Engineering student working across robotics, automation, additive manufacturing, CAD and software for physical systems.",
 
   // Set by the deploy workflow. For a custom domain or Vercel, set
   // NEXT_PUBLIC_SITE_URL there or replace the fallback below.
@@ -29,10 +24,10 @@ export const site = {
 } as const;
 
 export const nav = [
-  { href: "/projects", label: "Projects" },
-  { href: "/about", label: "About" },
-  { href: "/cv", label: "CV" },
-  { href: "/contact", label: "Contact" },
+  { path: "/projects", key: "projects" },
+  { path: "/about", key: "about" },
+  { path: "/cv", key: "cv" },
+  { path: "/contact", key: "contact" },
 ] as const;
 
 /** True when a value still contains a [PLACEHOLDER]. */

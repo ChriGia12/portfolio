@@ -1,4 +1,5 @@
 import type { Project } from "@/lib/types";
+import { ui, type Locale } from "@/lib/i18n";
 import { Reveal } from "@/components/ui/Reveal";
 import { MediaFrame } from "@/components/ui/MediaFrame";
 import { CaseNav } from "./CaseNav";
@@ -7,13 +8,14 @@ import { CodeBlock } from "./CodeBlock";
 
 const wide = (aspect?: string) => aspect === "16/9" || aspect === "21/9";
 
-export function CaseStudy({ project }: { project: Project }) {
+export function CaseStudy({ lang, project }: { lang: Locale; project: Project }) {
   const sections = project.caseStudy ?? [];
+  const t = ui[lang];
   return (
     <div className="shell mt-20 grid gap-x-8 lg:mt-28 lg:grid-cols-12">
       <aside className="hidden lg:col-span-3 lg:block">
         <div className="sticky top-28">
-          <CaseNav sections={sections.map(({ id, title }) => ({ id, title }))} />
+          <CaseNav label={t.a11y.sections} sections={sections.map(({ id, title }) => ({ id, title }))} />
         </div>
       </aside>
 
@@ -40,7 +42,7 @@ export function CaseStudy({ project }: { project: Project }) {
                     : "mt-8 max-w-2xl space-y-5"
                 }
               >
-                {s.placeholder && <p className="label mb-3 text-accent">To be completed</p>}
+                {s.placeholder && <p className="label mb-3 text-accent">{t.projects.todo}</p>}
                 {s.body.map((p, k) => (
                   <p
                     key={k}
@@ -75,7 +77,7 @@ export function CaseStudy({ project }: { project: Project }) {
 
             {s.showPipeline && project.pipeline && (
               <Reveal className="mt-10">
-                <SystemDiagram nodes={project.pipeline} />
+                <SystemDiagram nodes={project.pipeline} caption={t.projects.diagram} outLabel={t.projects.out} />
               </Reveal>
             )}
 
@@ -126,7 +128,7 @@ export function CaseStudy({ project }: { project: Project }) {
               <div className="mt-10 grid gap-x-6 gap-y-10 sm:grid-cols-2">
                 {s.media.map((m) => (
                   <Reveal key={m.label} className={wide(m.aspect) ? "sm:col-span-2" : ""}>
-                    <MediaFrame media={m} />
+                    <MediaFrame lang={lang} media={m} />
                   </Reveal>
                 ))}
               </div>

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { site } from "@/content/site";
 import { disciplines } from "@/content/skills";
+import { alternates, href, isLocale, ui } from "@/lib/i18n";
 import { Skills } from "@/components/sections/Skills";
 import { Experience } from "@/components/sections/Experience";
 import { ButtonLink } from "@/components/ui/ButtonLink";
@@ -8,58 +10,50 @@ import { MediaFrame } from "@/components/ui/MediaFrame";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 
-export const metadata: Metadata = {
-  title: "About",
-  description:
-    "Mechanical Engineering student with a growing focus on robotics, automation and software applied to physical systems.",
-  alternates: { canonical: "/about" },
-};
+export async function generateMetadata(props: PageProps<"/[lang]/about">): Promise<Metadata> {
+  const { lang } = await props.params;
+  if (!isLocale(lang)) return {};
+  const t = ui[lang].about;
+  return { title: t.label, description: t.meta, alternates: alternates(lang, "/about") };
+}
 
-export default function AboutPage() {
+export default async function AboutPage(props: PageProps<"/[lang]/about">) {
+  const { lang } = await props.params;
+  if (!isLocale(lang)) notFound();
+  const t = ui[lang];
+
   return (
     <>
       <section className="shell pb-8 pt-14 sm:pt-20">
-        <SectionLabel>About</SectionLabel>
+        <SectionLabel>{t.about.label}</SectionLabel>
         <h1 className="mt-6 max-w-5xl text-[clamp(2.25rem,6.2vw,5rem)] font-medium leading-[1.02] tracking-[-0.035em]">
-          I connect mechanical design, robotics and software —{" "}
-          <span className="text-muted">and turn ideas into systems that work.</span>
+          {t.about.title[0]}
+          <span className="text-muted">{t.about.title[1]}</span>
         </h1>
 
         <div className="mt-16 grid gap-x-8 gap-y-12 lg:mt-24 lg:grid-cols-12">
           <Reveal className="lg:col-span-4">
             {/* Add a portrait: set `src: "/portrait.jpg"` and put the file in /public. */}
             <MediaFrame
-              media={{ kind: "image", label: "Portrait", aspect: "3/4", hint: "/public/portrait.jpg" }}
+              lang={lang}
+              media={{ kind: "image", label: t.about.portrait, aspect: "3/4", hint: "/public/portrait.jpg" }}
               sizes="(min-width: 1024px) 33vw, 100vw"
             />
           </Reveal>
 
           <Reveal delay={0.08} className="lg:col-span-7 lg:col-start-6">
             <div className="space-y-6 text-lg leading-relaxed text-muted">
-              <p className="text-xl text-fg/90">
-                I&rsquo;m {site.name}, a Mechanical Engineering student. Over the
-                course of my studies my interest has moved steadily towards
-                robotics, automation and the software that runs physical
-                machines.
-              </p>
-              <p>
-                I work best where disciplines overlap: modelling a part in CAD,
-                planning how a robot should move to build it, and writing the
-                code that turns that plan into motion. Robotic additive
-                manufacturing on a 6-axis KUKA was where those pieces first came
-                together for me.
-              </p>
-              <p>
-                Right now I&rsquo;m designing my own six-axis desktop arm from
-                scratch, to understand every layer of a robot — structure,
-                transmissions, electronics, kinematics and control.
-              </p>
+              {t.about.paragraphs.map((p, i) => (
+                <p key={i} className={i === 0 ? "text-xl text-fg/90" : undefined}>
+                  {p}
+                </p>
+              ))}
             </div>
 
             <dl className="mt-12 grid grid-cols-2 gap-x-8 border-t border-line">
               {[
-                ["Based in", site.location],
-                ["Studying at", site.university],
+                [t.about.basedIn, site.location],
+                [t.about.studyingAt, site.university],
               ].map(([k, v]) => (
                 <div key={k} className="border-b border-line py-5">
                   <dt className="label text-dim">{k}</dt>
@@ -68,8 +62,8 @@ export default function AboutPage() {
               ))}
             </dl>
 
-            <ul className="mt-10 flex flex-wrap gap-2" aria-label="Disciplines">
-              {disciplines.map((d) => (
+            <ul className="mt-10 flex flex-wrap gap-2" aria-label={t.a11y.disciplines}>
+              {disciplines[lang].map((d) => (
                 <li key={d} className="label border border-line px-2.5 py-1.5 text-muted">
                   {d}
                 </li>
@@ -78,17 +72,17 @@ export default function AboutPage() {
 
             <div className="mt-10 flex flex-wrap gap-3">
               <ButtonLink href={site.cv} variant="primary" download>
-                Download CV
+                {t.home.downloadCv}
               </ButtonLink>
-              <ButtonLink href="/contact">Get in touch</ButtonLink>
+              <ButtonLink href={href(lang, "/contact")}>{t.about.getInTouch}</ButtonLink>
             </div>
           </Reveal>
         </div>
       </section>
 
-      <Skills />
+      <Skills lang={lang} />
       <div className="border-t border-line" />
-      <Experience />
+      <Experience lang={lang} />
     </>
   );
 }

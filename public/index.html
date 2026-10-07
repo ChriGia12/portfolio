@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Christian Giancola</title>
+    <!-- Entry page for static hosting: sends visitors to /en/ or /it/,
+         using their last choice or the browser language. -->
+    <script>
+      (function () {
+        var lang;
+        try {
+          lang = localStorage.getItem("lang");
+        } catch (e) {}
+        if (lang !== "en" && lang !== "it") {
+          lang = (navigator.language || "en").slice(0, 2).toLowerCase() === "it" ? "it" : "en";
+        }
+        location.replace(lang + "/" + location.search + location.hash);
+      })();
+    </script>
+    <noscript><meta http-equiv="refresh" content="0; url=en/" /></noscript>
+    <style>
+      body { margin: 0; background: #0a0a0b; color: #8b8b93; font: 14px/1.6 ui-monospace, monospace; padding: 2rem; }
+      a { color: #ededef; }
+    </style>
+  </head>
+  <body>
+    <a href="en/">English</a> · <a href="it/">Italiano</a>
+  </body>
+</html>

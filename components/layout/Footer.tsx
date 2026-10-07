@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { nav, site } from "@/content/site";
+import { href, ui, type Locale } from "@/lib/i18n";
 import { AxisTriad } from "@/components/technical/AxisTriad";
 
-export function Footer() {
+export function Footer({ lang }: { lang: Locale }) {
+  const t = ui[lang];
   return (
     <footer className="border-t border-line">
       <div className="shell flex flex-col gap-8 py-10 md:flex-row md:items-end md:justify-between">
@@ -10,16 +12,16 @@ export function Footer() {
           <AxisTriad size={44} />
           <div>
             <p className="text-sm font-medium">{site.name}</p>
-            <p className="label mt-1 text-dim">{site.role}</p>
+            <p className="label mt-1 text-dim">{t.site.role}</p>
           </div>
         </div>
 
-        <nav aria-label="Footer">
+        <nav aria-label={t.a11y.footer}>
           <ul className="label flex flex-wrap gap-x-6 gap-y-3 text-muted">
             {nav.map((item) => (
-              <li key={item.href}>
-                <Link href={item.href} className="transition-colors hover:text-fg">
-                  {item.label}
+              <li key={item.path}>
+                <Link href={href(lang, item.path)} className="transition-colors hover:text-fg">
+                  {t.nav[item.key]}
                 </Link>
               </li>
             ))}

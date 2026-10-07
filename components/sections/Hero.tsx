@@ -1,9 +1,11 @@
 import { site } from "@/content/site";
+import { href, ui, type Locale } from "@/lib/i18n";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Reveal } from "@/components/ui/Reveal";
 import { RobotWireframe } from "@/components/technical/RobotWireframe";
 
-export function Hero() {
+export function Hero({ lang }: { lang: Locale }) {
+  const t = ui[lang];
   return (
     <section className="relative overflow-hidden border-b border-line">
       <div aria-hidden className="sheet-grid fade-edges absolute inset-0 opacity-35" />
@@ -21,9 +23,9 @@ export function Hero() {
           </Reveal>
 
           <Reveal delay={0.08}>
-            <p className="mt-8 text-lg font-medium tracking-tight sm:text-xl">{site.role}</p>
+            <p className="mt-8 text-lg font-medium tracking-tight sm:text-xl">{t.site.role}</p>
             <p className="label mt-2 text-muted">
-              {site.focus.map((f, i) => (
+              {t.site.focus.map((f, i) => (
                 <span key={f}>
                   {i > 0 && <span className="mx-2 text-accent">•</span>}
                   {f}
@@ -34,16 +36,16 @@ export function Hero() {
 
           <Reveal delay={0.16}>
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted sm:text-xl">
-              {site.tagline}
+              {t.site.tagline}
             </p>
           </Reveal>
 
           <Reveal delay={0.24}>
             <div className="mt-9 flex flex-wrap items-center gap-x-3 gap-y-4">
-              <ButtonLink href="/projects" variant="primary">
-                View Projects
+              <ButtonLink href={href(lang, "/projects")} variant="primary">
+                {t.hero.viewProjects}
               </ButtonLink>
-              <ButtonLink href="/about">About Me</ButtonLink>
+              <ButtonLink href={href(lang, "/about")}>{t.hero.aboutMe}</ButtonLink>
               <span className="flex gap-6 pl-2 sm:pl-4">
                 <ButtonLink href={site.links.github} variant="text" external>
                   GitHub
@@ -58,7 +60,11 @@ export function Hero() {
 
         <Reveal delay={0.2} className="lg:col-span-5">
           {/* Swap for a photo or a real render of the robot cell when available. */}
-          <RobotWireframe className="mx-auto max-w-md pb-7 pt-2 lg:max-w-none" />
+          <RobotWireframe
+            label={t.a11y.robot}
+            layerLabel={t.hero.layer}
+            className="mx-auto max-w-md pb-7 pt-2 lg:max-w-none"
+          />
         </Reveal>
       </div>
     </section>

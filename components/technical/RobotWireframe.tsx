@@ -91,7 +91,15 @@ function Joint({ p, r = 9 }: { p: P; r?: number }) {
   );
 }
 
-export function RobotWireframe({ className = "" }: { className?: string }) {
+export function RobotWireframe({
+  className = "",
+  label,
+  layerLabel,
+}: {
+  className?: string;
+  label: string;
+  layerLabel: string;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { margin: "0px 0px -10% 0px" });
   const reduce = useReducedMotion();
@@ -124,7 +132,7 @@ export function RobotWireframe({ className = "" }: { className?: string }) {
         viewBox="70 160 440 300"
         className="h-auto w-full"
         role="img"
-        aria-label="Schematic of a six-axis robot arm printing a part layer by layer"
+        aria-label={label}
         fill="none"
       >
         {/* floor + print bed */}
@@ -192,7 +200,7 @@ export function RobotWireframe({ className = "" }: { className?: string }) {
 
       <p aria-hidden className="label absolute bottom-0 left-0 flex items-center gap-2 text-dim">
         <span className="inline-block h-1.5 w-1.5 bg-accent" />
-        LIN · Layer {String(layer + 1).padStart(2, "0")} / {String(LAYERS).padStart(2, "0")}
+        LIN · {layerLabel} {String(layer + 1).padStart(2, "0")} / {String(LAYERS).padStart(2, "0")}
       </p>
     </div>
   );
