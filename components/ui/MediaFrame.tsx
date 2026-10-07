@@ -36,6 +36,7 @@ export function MediaFrame({
 }) {
   const aspect = (media.aspect ?? "16/9").replace("/", " / ");
   const kindLabel = ui[lang].projects.kinds;
+  const fit = media.fit === "contain" ? "object-contain" : "object-cover";
 
   return (
     <figure className="min-w-0">
@@ -47,10 +48,11 @@ export function MediaFrame({
           media.kind === "video" ? (
             <video
               src={asset(media.src)}
+              poster={media.poster ? asset(media.poster) : undefined}
               controls
               playsInline
               preload="metadata"
-              className="absolute inset-0 h-full w-full object-cover"
+              className={`absolute inset-0 h-full w-full ${fit}`}
               aria-label={media.alt ?? media.label}
             />
           ) : (
@@ -60,7 +62,7 @@ export function MediaFrame({
               fill
               sizes={sizes}
               priority={priority}
-              className="object-cover"
+              className={fit}
             />
           )
         ) : (

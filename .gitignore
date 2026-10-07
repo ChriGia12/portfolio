@@ -42,3 +42,7 @@ next-env.d.ts
 
 # local tooling
 .claude-flow/
+
+# full-size originals of the photos (web-sized copies live in public/)
+/media-originals/
+.DS_Store

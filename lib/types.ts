@@ -11,7 +11,11 @@ export type Media = {
   /** e.g. "/projects/robotic-am/gh-01.png". Undefined = placeholder. */
   src?: string;
   alt?: string;
-  aspect?: "16/9" | "4/3" | "1/1" | "3/4" | "21/9";
+  aspect?: "16/9" | "4/3" | "1/1" | "3/4" | "21/9" | "2/1";
+  /** "contain" shows the whole file (screenshots, diagrams); default crops to fill. */
+  fit?: "cover" | "contain";
+  /** Still image shown before a video plays. */
+  poster?: string;
   /** Where the real file should go (shown on the placeholder). */
   hint?: string;
 };

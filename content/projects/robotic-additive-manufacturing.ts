@@ -1,13 +1,14 @@
 import type { CodeSample, Project } from "@/lib/types";
 import type { Locale } from "@/lib/i18n";
 
-const dir = "/public/projects/robotic-additive-manufacturing";
+/** Media files live in public/projects/robotic-additive-manufacturing/. */
+const img = "/projects/robotic-additive-manufacturing";
 
 /**
- * NOTE: the copy below is a first draft written from the project outline.
- * Check every sentence against what actually happened, and fill the
- * sections marked `placeholder: true` with real data. English and Italian
- * versions are kept side by side — update both.
+ * NOTE: Problem, Approach, Development, Challenges and Solutions are still
+ * the first draft written from the project outline — check them against what
+ * actually happened. Code excerpts, results and photos are real.
+ * English and Italian versions are kept side by side — update both.
  */
 
 const shared = {
@@ -19,47 +20,99 @@ const shared = {
   // cover: { kind: "image", label: "Robot printing", src: "/projects/robotic-additive-manufacturing/cover.jpg", alt: "…" },
 } as const;
 
-const pythonCode = `def lin(plane, blend=True):
-    """Target plane -> KRL linear move in the active BASE."""
-    x, y, z = plane.origin
-    a, b, c = to_kuka_abc(plane)          # ZYX Euler angles, degrees
-    suffix = " C_DIS" if blend else ""
-    return (
-        f"LIN {{X {x:.3f}, Y {y:.3f}, Z {z:.3f}, "
-        f"A {a:.3f}, B {b:.3f}, C {c:.3f}}}{suffix}"
-    )
+// Real excerpts: the beginning and the end of each file, the middle is omitted.
+const pythonCode = `import re
 
+PROGRAM_NAME = str(ProgramName)
+TOOL_NUMBER = 11
+BASE_NUMBER = 1
 
-def write_program(name, layers, tool, base):
-    lines = [f"DEF {name}()", "  BAS(#INITMOV, 0)"]
-    lines += [f"  $TOOL = TOOL_DATA[{tool}]", f"  $BASE = BASE_DATA[{base}]"]
-    for layer in layers:
-        lines.append("  " + ptp(layer.approach))
-        lines.append("  " + extruder(on=True))
-        lines += ["  " + lin(p) for p in layer.planes]
-        lines.append("  " + extruder(on=False))
-    lines.append("END")
-    return "\\n".join(lines)`;
+LIN_SPEED = 0.80
+ADVANCE = 5
 
-const krlCode = `DEF print_part()
-  BAS(#INITMOV, 0)
-  $TOOL = TOOL_DATA[1]
-  $BASE = BASE_DATA[1]
+EXTRUDER_ANOUT = 7
+EXTRUDER_SPEED_ANOUT = 6
+EXTRUDER_SPEED = 4
+EXTRUDER_DELAY = 1
 
-  PTP {A1 0, A2 -90, A3 90, A4 0, A5 30, A6 0}
-  $VEL.CP = 0.02
+E1_VALUE = float(stepE1)
+E2_VALUE = float(stepE2)
+E3_VALUE = float(stepE3)
+E4_VALUE = float(stepE4)
 
-  PTP {X 120.000, Y 80.000, Z 20.000, A 0.000, B 90.000, C 0.000}
-  $OUT[1] = TRUE                 ; extruder on
-  LIN {X 120.000, Y 80.000, Z 0.400, A 0.000, B 90.000, C 0.000} C_DIS
-  LIN {X 180.000, Y 80.000, Z 0.400, A 0.000, B 90.000, C 0.000} C_DIS
-  LIN {X 180.000, Y 140.000, Z 0.400, A 0.000, B 90.000, C 0.000} C_DIS
-  $OUT[1] = FALSE                ; extruder off
+A_VALUE = float(ToolA)
+B_VALUE = float(ToolB)
+C_VALUE = float(ToolC)
+
+USE_HOMING = True
+
+with open(path, "r") as f:
+    lines = f.readlines()
+
+BASE_X = 1448.0
+BASE_Y = -1000.0
+BASE_Z = 5.0
+
+# ...
+
+footer += "END"
+
+final_code = header + first_lin + start_extrusion + "".join(remaining_lin) + footer
+
+import os
+
+folder = os.path.dirname(path)
+
+new_path = os.path.join(folder, PROGRAM_NAME + ".src")
+
+with open(new_path, "w") as f:
+    f.write(final_code)
+
+newPath = new_path`;
+
+const krlCode = `DEF Sella11 ( )
+GLOBAL INTERRUPT DECL 3 WHEN $STOPMESS==TRUE DO IR_STOPM ( )
+
+;FOLD INI
+BAS (#INITMOV,0)
+BAS (#VEL_PTP,50)
+BAS (#ACC_PTP,100)
+;ENDFOLD
+
+;FOLD STARTPOS
+$BWDSTART = FALSE
+PDAT_ACT = {VEL 50,ACC 100,APO_DIST 10}
+BAS(#PTP_DAT)
+FDAT_ACT = {TOOL_NO 0,BASE_NO 0,IPO_FRAME #BASE}
+BAS (#FRAMES)
+BAS (#VEL_PTP,50)
+;ENDFOLD
+
+; ...
+
+; =========================
+; SPEGNIMENTO ESTRUSORE
+; =========================
+$ANOUT[7]=0
+$ANOUT[6]=0
+
+PTP {A1 0.000, A2 -90.000, A3 90.000, A4 0.000, A5 -1.000, A6 0.000, E1 0, E2 0, E3 0, E4 0, E5 0, E6 0}
+
+PTP {A1 0.000, A2 -90.000, A3 90.000, A4 0.000, A5 -1.000, A6 0.000, E1 0, E2 0, E3 0, E4 0, E5 0, E6 0}
+
+; MACRO FINALE
+PTP $AXIS_ACT ; skip BCO quickly
+; HOMING
+PTP {A1 0.000, A2 -90.000, A3 0.000, A4 0.000, A5 -1.000, A6 0.000}
+$ANOUT[4]=0.6
+WAIT SEC 2
+WAIT FOR ($ANIN[2] < 0)
+PTP {A1 0.000, A2 -90.000, A3 90.000, A4 0.000, A5 -1.000, A6 0.000}
 END`;
 
 const code = (pyCaption: string, krlCaption: string): CodeSample[] => [
   { language: "python", filename: "post_processor.py", caption: pyCaption, code: pythonCode },
-  { language: "krl", filename: "print_part.src", caption: krlCaption, code: krlCode },
+  { language: "krl", filename: "Sella11.src", caption: krlCaption, code: krlCode },
 ];
 
 export const roboticAdditiveManufacturing: Record<Locale, Project> = {
@@ -116,7 +169,14 @@ export const roboticAdditiveManufacturing: Record<Locale, Project> = {
         ],
         showPipeline: true,
         media: [
-          { kind: "screenshot", label: "Grasshopper definition", aspect: "16/9", hint: `${dir}/grasshopper-01.png` },
+          {
+            kind: "screenshot",
+            label: "Grasshopper definition",
+            aspect: "2/1",
+            fit: "contain",
+            src: `${img}/grasshopper-01.jpg`,
+            alt: "Annotated Grasshopper definition: LIN command, merge, KUKA|prc core and tool position",
+          },
         ],
       },
       {
@@ -145,8 +205,8 @@ export const roboticAdditiveManufacturing: Record<Locale, Project> = {
           },
         ],
         code: code(
-          "Illustrative excerpt — replace with the real post processor code.",
-          "Illustrative excerpt — replace with a generated program.",
+          "Excerpt from the Python post processor: configuration at the top, file writing at the end.",
+          "Excerpt from a generated program: initialisation, then extruder shutdown and homing.",
         ),
       },
       {
@@ -196,13 +256,19 @@ export const roboticAdditiveManufacturing: Record<Locale, Project> = {
       {
         id: "results",
         title: "Results",
-        placeholder: true,
         body: [
-          "[PLACEHOLDER — describe what was printed, what worked and what you measured. Add real numbers only: part size, layer height, print time, accuracy.]",
+          "The workflow was put to the test with a series of prints of growing difficulty: a vase, a design chair, a honeycomb structure.",
+          "The most significant step came last: the first ironing pass on a non-planar object, with the robot following the curved surface instead of working in flat layers. The result is fair, and it shows clearly where to work next — a more even material flow, and a definitive implementation of the non-planar tool tilt.",
         ],
         media: [
-          { kind: "image", label: "Printed part", aspect: "4/3", hint: `${dir}/result-01.jpg` },
-          { kind: "video", label: "Robot printing", aspect: "4/3", hint: `${dir}/print.mp4` },
+          {
+            kind: "image",
+            label: "First non-planar ironing",
+            aspect: "3/4",
+            src: `${img}/result-01.jpg`,
+            alt: "Extruder depositing red material along the curved top surface of a part",
+          },
+          { kind: "video", label: "Non-planar ironing", aspect: "3/4", src: `${img}/print.mp4`, poster: `${img}/print-poster.jpg` },
         ],
       },
       {
@@ -219,12 +285,12 @@ export const roboticAdditiveManufacturing: Record<Locale, Project> = {
         id: "gallery",
         title: "Gallery",
         media: [
-          { kind: "cad", label: "CAD — cell and end effector", aspect: "16/9", hint: `${dir}/cad-01.png` },
-          { kind: "screenshot", label: "Grasshopper — toolpath", aspect: "4/3", hint: `${dir}/grasshopper-02.png` },
-          { kind: "screenshot", label: "KUKA|prc — simulation", aspect: "4/3", hint: `${dir}/prc-01.png` },
-          { kind: "image", label: "Extruder on the flange", aspect: "3/4", hint: `${dir}/extruder.jpg` },
-          { kind: "image", label: "Non-planar test", aspect: "3/4", hint: `${dir}/nonplanar.jpg` },
-          { kind: "video", label: "Machine video", aspect: "16/9", hint: `${dir}/machine.mp4` },
+          { kind: "image", label: "Robot cell — KUKA on the linear axis", aspect: "1/1", fit: "contain", src: `${img}/cell.png`, alt: "KUKA robot mounted on a linear axis next to the work table" },
+          { kind: "image", label: "Extruder on the flange", aspect: "3/4", src: `${img}/extruder.jpg`, alt: "Extruder with hopper mounted on the robot flange" },
+          { kind: "screenshot", label: "KUKA|prc — simulation", aspect: "16/9", src: `${img}/prc-01.jpg`, alt: "Rhino viewport with the robot, the linear axis and a toolpath over the table" },
+          { kind: "image", label: "Honeycomb — print", aspect: "3/4", src: `${img}/honeycomb.jpg`, alt: "Printed honeycomb structure on the print bed" },
+          { kind: "image", label: "Design chair — print", aspect: "3/4", src: `${img}/sedia.jpg`, alt: "Robot printing the curved shell of a chair" },
+          { kind: "video", label: "Machine video", aspect: "3/4", src: `${img}/machine.mp4`, poster: `${img}/machine-poster.jpg` },
         ],
       },
     ],
@@ -283,7 +349,14 @@ export const roboticAdditiveManufacturing: Record<Locale, Project> = {
         ],
         showPipeline: true,
         media: [
-          { kind: "screenshot", label: "Definizione Grasshopper", aspect: "16/9", hint: `${dir}/grasshopper-01.png` },
+          {
+            kind: "screenshot",
+            label: "Definizione Grasshopper",
+            aspect: "2/1",
+            fit: "contain",
+            src: `${img}/grasshopper-01.jpg`,
+            alt: "Definizione Grasshopper annotata: comando LIN, merge, core KUKA|prc e posizione utensile",
+          },
         ],
       },
       {
@@ -312,8 +385,8 @@ export const roboticAdditiveManufacturing: Record<Locale, Project> = {
           },
         ],
         code: code(
-          "Estratto illustrativo — da sostituire con il codice reale del post processor.",
-          "Estratto illustrativo — da sostituire con un programma generato.",
+          "Estratto del post processor Python: configurazione in testa, scrittura del file in coda.",
+          "Estratto di un programma generato: inizializzazione, poi spegnimento dell’estrusore e homing.",
         ),
       },
       {
@@ -363,13 +436,19 @@ export const roboticAdditiveManufacturing: Record<Locale, Project> = {
       {
         id: "results",
         title: "Risultati",
-        placeholder: true,
         body: [
-          "[SEGNAPOSTO — descrivi cosa è stato stampato, cosa ha funzionato e cosa hai misurato. Inserisci solo numeri reali: dimensioni del pezzo, altezza strato, tempo di stampa, precisione.]",
+          "Il workflow è stato messo alla prova con una serie di stampe via via più impegnative: un vaso, una sedia di design, una struttura a nido d’ape.",
+          "Il passo più significativo è arrivato per ultimo: la prima stampa in ironing su un oggetto non planare, con il robot che segue la superficie curva invece di procedere per strati piani. Il risultato è discreto e indica con chiarezza dove lavorare: una fuoriuscita del materiale più regolare e l’implementazione definitiva dell’inclinazione non planare dell’utensile.",
         ],
         media: [
-          { kind: "image", label: "Pezzo stampato", aspect: "4/3", hint: `${dir}/result-01.jpg` },
-          { kind: "video", label: "Robot in stampa", aspect: "4/3", hint: `${dir}/print.mp4` },
+          {
+            kind: "image",
+            label: "Prima stampa in ironing non planare",
+            aspect: "3/4",
+            src: `${img}/result-01.jpg`,
+            alt: "Estrusore che deposita materiale rosso lungo la superficie curva superiore di un pezzo",
+          },
+          { kind: "video", label: "Ironing non planare", aspect: "3/4", src: `${img}/print.mp4`, poster: `${img}/print-poster.jpg` },
         ],
       },
       {
@@ -386,12 +465,12 @@ export const roboticAdditiveManufacturing: Record<Locale, Project> = {
         id: "gallery",
         title: "Galleria",
         media: [
-          { kind: "cad", label: "CAD — cella ed end effector", aspect: "16/9", hint: `${dir}/cad-01.png` },
-          { kind: "screenshot", label: "Grasshopper — percorso utensile", aspect: "4/3", hint: `${dir}/grasshopper-02.png` },
-          { kind: "screenshot", label: "KUKA|prc — simulazione", aspect: "4/3", hint: `${dir}/prc-01.png` },
-          { kind: "image", label: "Estrusore sulla flangia", aspect: "3/4", hint: `${dir}/extruder.jpg` },
-          { kind: "image", label: "Prova non planare", aspect: "3/4", hint: `${dir}/nonplanar.jpg` },
-          { kind: "video", label: "Video della macchina", aspect: "16/9", hint: `${dir}/machine.mp4` },
+          { kind: "image", label: "Cella robotica — KUKA su asse lineare", aspect: "1/1", fit: "contain", src: `${img}/cell.png`, alt: "Robot KUKA montato su un asse lineare accanto al piano di lavoro" },
+          { kind: "image", label: "Estrusore sulla flangia", aspect: "3/4", src: `${img}/extruder.jpg`, alt: "Estrusore con tramoggia montato sulla flangia del robot" },
+          { kind: "screenshot", label: "KUKA|prc — simulazione", aspect: "16/9", src: `${img}/prc-01.jpg`, alt: "Vista Rhino con il robot, l’asse lineare e un percorso utensile sopra il tavolo" },
+          { kind: "image", label: "Honeycomb — stampa", aspect: "3/4", src: `${img}/honeycomb.jpg`, alt: "Struttura a nido d’ape stampata sul piano di stampa" },
+          { kind: "image", label: "Sedia da design — stampa", aspect: "3/4", src: `${img}/sedia.jpg`, alt: "Robot che stampa il guscio curvo di una sedia" },
+          { kind: "video", label: "Video della macchina", aspect: "3/4", src: `${img}/machine.mp4`, poster: `${img}/machine-poster.jpg` },
         ],
       },
     ],
