@@ -1,12 +1,10 @@
 import type { Project } from "@/lib/types";
 import type { Locale } from "@/lib/i18n";
 
-const dir = "/public/projects/kinepath";
+/** Media files live in public/projects/kinepath/. */
+const img = "/projects/kinepath";
 
-/**
- * Written from the KinePath README. Screenshots and the demo video are
- * placeholders until the files are added (see `hint` on each media slot).
- */
+/** Written from the KinePath README. */
 const shared = {
   slug: "kinepath",
   title: "KinePath",
@@ -190,10 +188,15 @@ export const kinepath: Record<Locale, Project> = {
         id: "gallery",
         title: "Gallery",
         media: [
-          { kind: "screenshot", label: "Model, orientation and cell", aspect: "16/9", hint: `${dir}/app-01.png` },
-          { kind: "screenshot", label: "Toolpath and risk zones", aspect: "4/3", hint: `${dir}/toolpath.png` },
-          { kind: "screenshot", label: "Simulation", aspect: "4/3", hint: `${dir}/simulation.png` },
-          { kind: "video", label: "Demo video", aspect: "16/9", hint: `${dir}/demo.mp4` },
+          {
+            kind: "screenshot",
+            label: "The application — model, cell and toolpath",
+            aspect: "2/1",
+            fit: "contain",
+            src: `${img}/app-01.png`,
+            alt: "KinePath with a part on the table: model data on the left, the robot cell in 3D and the simulation panel",
+          },
+          { kind: "video", label: "Demo — cutting a part and simulating the print", aspect: "2/1", src: `${img}/demo.mp4`, poster: `${img}/demo-poster.jpg` },
         ],
       },
     ],
@@ -368,10 +371,15 @@ export const kinepath: Record<Locale, Project> = {
         id: "gallery",
         title: "Galleria",
         media: [
-          { kind: "screenshot", label: "Modello, orientamento e cella", aspect: "16/9", hint: `${dir}/app-01.png` },
-          { kind: "screenshot", label: "Toolpath e zone a rischio", aspect: "4/3", hint: `${dir}/toolpath.png` },
-          { kind: "screenshot", label: "Simulazione", aspect: "4/3", hint: `${dir}/simulation.png` },
-          { kind: "video", label: "Video dimostrativo", aspect: "16/9", hint: `${dir}/demo.mp4` },
+          {
+            kind: "screenshot",
+            label: "L’applicazione — modello, cella e toolpath",
+            aspect: "2/1",
+            fit: "contain",
+            src: `${img}/app-01.png`,
+            alt: "KinePath con un pezzo sul piano: dati del modello a sinistra, la cella robotica in 3D e il pannello di simulazione",
+          },
+          { kind: "video", label: "Demo — taglio di un pezzo e simulazione della stampa", aspect: "2/1", src: `${img}/demo.mp4`, poster: `${img}/demo-poster.jpg` },
         ],
       },
     ],
