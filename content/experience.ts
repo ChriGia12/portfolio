@@ -23,7 +23,7 @@ export const experience: Record<Locale, ExperienceEntry[]> = {
     {
       period: "2024 — Present",
       title: "First-level Academic Diploma Programme in Classical Guitar",
-      organisation: "Bologna Conservatory",
+      organisation: "G. B. Martini Conservatory, Bologna",
       type: "Education",
       description:
         "Parallel programme requiring precision, discipline and long-term management of complex activities.",
@@ -49,7 +49,7 @@ export const experience: Record<Locale, ExperienceEntry[]> = {
     {
       period: "2024 — in corso",
       title: "Corso di Diploma Accademico di Primo Livello in Chitarra Classica",
-      organisation: "Conservatorio di Bologna",
+      organisation: "Conservatorio G. B. Martini, Bologna",
       type: "Education",
       description:
         "Percorso parallelo dedicato a precisione esecutiva, disciplina e gestione di attività complesse nel tempo.",
