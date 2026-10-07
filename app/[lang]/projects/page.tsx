@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getProjects } from "@/content/projects";
 import { alternates, isLocale, ui } from "@/lib/i18n";
 import { ProjectFeature } from "@/components/projects/ProjectFeature";
+import { OtherProjects } from "@/components/projects/OtherProjects";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 
@@ -20,6 +21,7 @@ export default async function ProjectsPage(props: PageProps<"/[lang]/projects">)
   const projects = getProjects(lang);
 
   return (
+    <>
     <div className="shell pb-8 pt-14 sm:pt-20">
       <SectionLabel>
         {t.label} · {String(projects.length).padStart(2, "0")}
@@ -37,5 +39,9 @@ export default async function ProjectsPage(props: PageProps<"/[lang]/projects">)
         ))}
       </div>
     </div>
+    <div className="pb-8">
+      <OtherProjects lang={lang} />
+    </div>
+    </>
   );
 }

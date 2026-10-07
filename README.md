@@ -35,13 +35,15 @@ to their last choice, or to Italian if the browser is set to Italian.
 
 ## Placeholders to replace
 
-Search the project for `[` and `TODO`. In short:
+Contacts, CVs, university and experience are real. Still to complete:
 
-- `content/site.ts` — domain, city, university, email, GitHub, LinkedIn
-- `content/experience.ts` — every entry
-- `content/projects/robotic-additive-manufacturing.ts` — year, context, the **Results** section, and check the draft copy and the two "illustrative" code excerpts against the real project
-- `content/projects/desktop-robotic-arm.ts` — phase statuses
-- `public/cv.pdf` — placeholder PDF, replace with the real CV (same file name)
+- `content/projects/robotic-additive-manufacturing.ts` — the **Results** section (marked `placeholder: true`) and the two "illustrative" code excerpts, to be replaced with real code
+- Images, screenshots and videos for all projects (every empty slot shows the file path it expects)
+- `public/portrait.jpg` for the About page
+- `content/projects/desktop-robotic-arm.ts` — phase statuses and log entries as the build progresses
+
+The CVs are `public/CV_Christian_Giancola.pdf` (Italian pages) and
+`public/Resume_Christian_Giancola.pdf` (English pages): overwrite the files to update them.
 
 ## Adding images and video
 

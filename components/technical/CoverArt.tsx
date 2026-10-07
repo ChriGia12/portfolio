@@ -191,6 +191,72 @@ function Arm() {
   );
 }
 
+function Slicer() {
+  const cx = 520;
+  const layers = 9;
+  const contour = (i: number) => {
+    const size = 250 - i * 9;
+    const pts: string[] = [];
+    for (let k = 0; k <= 72; k++) {
+      const t = (k / 72) * Math.PI * 2;
+      const r = size * (1 + 0.1 * Math.cos(2 * t) + 0.04 * Math.cos(3 * t + i * 0.25));
+      pts.push(`${(cx + r * Math.cos(t)).toFixed(1)},${(690 - i * 48 + r * 0.34 * Math.sin(t)).toFixed(1)}`);
+    }
+    return pts.join(" ");
+  };
+  const code = [
+    "DEF part()",
+    "  $BASE = BASE_DATA[1]",
+    "  $TOOL = TOOL_DATA[11]",
+    "  LIN {X 212.40, Y -86.10, Z 38.50} C_DIS",
+    "  LIN {X 214.85, Y -84.72, Z 38.50} C_DIS",
+    "  LIN {X 217.31, Y -83.40, Z 38.50} C_DIS",
+    "  LIN {X 219.78, Y -82.14, Z 38.50} C_DIS",
+    "  ...",
+    "END",
+  ];
+  return (
+    <>
+      <Grid id="g-slicer" />
+      {/* slices of the part, pulled apart */}
+      <line x1={cx} y1="760" x2={cx} y2="220" stroke={FG} strokeOpacity="0.25" strokeDasharray="14 4 3 4" />
+      {Array.from({ length: layers }, (_, i) => (
+        <polygon
+          key={i}
+          points={contour(i)}
+          fill="var(--color-surface)"
+          fillOpacity="0.55"
+          stroke={i === layers - 1 ? ACCENT : FG}
+          strokeOpacity={i === layers - 1 ? 1 : 0.2 + i * 0.05}
+          strokeWidth={i === layers - 1 ? 2.5 : 1.25}
+        />
+      ))}
+      <text x="250" y="170" fill="var(--color-muted)" fontSize="15" {...mono}>MESH / BREP</text>
+      <text x="250" y="198" fill="var(--color-dim)" fontSize="15" {...mono}>CONTOURS · TOL 0.2 MM</text>
+
+      {/* arrow */}
+      <path d="M880 450 H1000 M984 438 L1000 450 L984 462" stroke={ACCENT} strokeWidth="1.5" />
+
+      {/* generated program */}
+      <text x="1060" y="262" fill="var(--color-muted)" fontSize="15" {...mono}>PART.SRC</text>
+      <line x1="1060" y1="282" x2="1470" y2="282" stroke={FG} strokeOpacity="0.25" />
+      {code.map((line, i) => (
+        <text
+          key={i}
+          x="1060"
+          y={326 + i * 38}
+          fontSize="17"
+          fontFamily="var(--font-mono)"
+          fill={i === 4 ? ACCENT : "var(--color-muted)"}
+          xmlSpace="preserve"
+        >
+          {line}
+        </text>
+      ))}
+    </>
+  );
+}
+
 export function CoverArt({ kind, label }: { kind: CoverArtKind; label: string }) {
   return (
     <svg
@@ -202,7 +268,7 @@ export function CoverArt({ kind, label }: { kind: CoverArtKind; label: string })
       aria-label={label}
     >
       <rect width="1600" height="900" fill="var(--color-surface)" />
-      {kind === "toolpath" ? <Toolpath /> : <Arm />}
+      {kind === "toolpath" ? <Toolpath /> : kind === "slicer" ? <Slicer /> : <Arm />}
     </svg>
   );
 }

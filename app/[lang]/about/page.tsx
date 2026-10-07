@@ -52,12 +52,12 @@ export default async function AboutPage(props: PageProps<"/[lang]/about">) {
 
             <dl className="mt-12 grid grid-cols-2 gap-x-8 border-t border-line">
               {[
-                [t.about.basedIn, site.location],
-                [t.about.studyingAt, site.university],
+                [t.about.basedIn, site.location[lang]],
+                [t.about.studyingAt, site.university[lang]],
               ].map(([k, v]) => (
                 <div key={k} className="border-b border-line py-5">
                   <dt className="label text-dim">{k}</dt>
-                  <dd className="mt-2 font-mono text-xs text-muted">{v}</dd>
+                  <dd className="mt-2 text-sm">{v}</dd>
                 </div>
               ))}
             </dl>
@@ -71,7 +71,7 @@ export default async function AboutPage(props: PageProps<"/[lang]/about">) {
             </ul>
 
             <div className="mt-10 flex flex-wrap gap-3">
-              <ButtonLink href={site.cv} variant="primary" download>
+              <ButtonLink href={site.cv[lang]}variant="primary" download>
                 {t.home.downloadCv}
               </ButtonLink>
               <ButtonLink href={href(lang, "/contact")}>{t.about.getInTouch}</ButtonLink>

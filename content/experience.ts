@@ -1,64 +1,58 @@
 import type { ExperienceEntry } from "@/lib/types";
 import type { Locale } from "@/lib/i18n";
 
-/**
- * Every entry below is a placeholder. Replace the bracketed values and
- * remove `placeholder: true` once an entry is real. Keep both languages
- * in the same order.
- */
+/** Taken from the CV. Keep both languages in the same order. */
 export const experience: Record<Locale, ExperienceEntry[]> = {
   en: [
     {
-      period: "[YEAR] — Present",
-      title: "BSc Mechanical Engineering",
-      organisation: "[UNIVERSITY NAME]",
-      type: "Education",
-      description: "[Relevant courses, thesis topic or focus area.]",
-      placeholder: true,
-    },
-    {
-      period: "[YEAR]",
-      title: "[Internship role]",
-      organisation: "[COMPANY / LAB]",
+      period: "2026 — Present",
+      title: "Industrial Robotics and Additive Manufacturing Intern",
+      organisation: "University of Bologna · Montecuccolino Laboratory",
       type: "Internship",
-      description: "[One line on what you worked on.]",
-      placeholder: true,
+      description:
+        "Toolpaths for robotic material deposition on a six-axis KUKA with Rhino 8, Grasshopper and KUKA|prc; planar, inclined and non-planar slicing strategies; Python postprocessors that generate KRL and manage tool orientation, extrusion, an external linear axis, homing and purge sequences; hands-on printing tests on the robot.",
     },
     {
-      period: "[YEAR]",
-      title: "Robotic Additive Manufacturing",
-      organisation: "[UNIVERSITY LAB / DEPARTMENT]",
-      type: "Collaboration",
+      period: "2023 — Present",
+      title: "BSc in Mechanical Engineering",
+      organisation: "University of Bologna",
+      type: "Education",
       description:
-        "University and experimental project on a KUKA KR16 6-axis industrial robot.",
-      placeholder: true,
+        "Experimental thesis on the generation and control of toolpaths for robotic additive manufacturing.",
+    },
+    {
+      period: "2024 — Present",
+      title: "Academic Diploma in Classical Guitar",
+      organisation: "Conservatory",
+      type: "Education",
+      description:
+        "Parallel programme requiring precision, discipline and long-term management of complex activities.",
     },
   ],
   it: [
     {
-      period: "[ANNO] — Oggi",
-      title: "Laurea in Ingegneria Meccanica",
-      organisation: "[NOME UNIVERSITÀ]",
-      type: "Education",
-      description: "[Corsi rilevanti, argomento di tesi o area di interesse.]",
-      placeholder: true,
-    },
-    {
-      period: "[ANNO]",
-      title: "[Ruolo del tirocinio]",
-      organisation: "[AZIENDA / LABORATORIO]",
+      period: "2026 — in corso",
+      title: "Tirocinante in robotica industriale e manifattura additiva",
+      organisation: "Università di Bologna · Laboratorio di Montecuccolino",
       type: "Internship",
-      description: "[Una riga su cosa hai fatto.]",
-      placeholder: true,
+      description:
+        "Toolpath per deposizione robotizzata su KUKA a 6 assi con Rhino 8, Grasshopper e KUKA|prc; strategie di slicing planare, inclinato e non planare; postprocessori Python che generano KRL e gestiscono orientamento utensile, estrusione, asse lineare esterno, sequenze di home e spurgo; prove sperimentali sul robot.",
     },
     {
-      period: "[ANNO]",
-      title: "Additive manufacturing robotico",
-      organisation: "[LABORATORIO / DIPARTIMENTO]",
-      type: "Collaboration",
+      period: "2023 — in corso",
+      title: "Laurea in Ingegneria Meccanica",
+      organisation: "Università di Bologna",
+      type: "Education",
       description:
-        "Progetto universitario e sperimentale su un robot industriale KUKA KR16 a 6 assi.",
-      placeholder: true,
+        "Tesi sperimentale sulla generazione e sul controllo di toolpath per processi robotizzati di manifattura additiva.",
+    },
+    {
+      period: "2024 — in corso",
+      title: "Diploma accademico in Chitarra classica",
+      organisation: "Conservatorio",
+      type: "Education",
+      description:
+        "Percorso parallelo dedicato a precisione esecutiva, disciplina e gestione di attività complesse nel tempo.",
     },
   ],
 };

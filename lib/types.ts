@@ -62,7 +62,15 @@ export type TimelinePhase = {
   media?: Media[];
 };
 
-export type CoverArtKind = "toolpath" | "arm";
+export type CoverArtKind = "toolpath" | "arm" | "slicer";
+
+/** A short entry for the "other projects" list (no dedicated page). */
+export type MinorProject = {
+  title: string;
+  year: string;
+  category: string;
+  summary: string;
+};
 
 export type Project = {
   slug: string;
@@ -79,6 +87,8 @@ export type Project = {
   /** Real cover image. If undefined the generated `coverArt` drawing is used. */
   cover?: Media;
   coverArt: CoverArtKind;
+  /** External links shown under the title, e.g. live app or repository. */
+  links?: { label: string; href: string }[];
   objectives?: string[];
   pipeline?: PipelineNode[];
   caseStudy?: CaseSection[];

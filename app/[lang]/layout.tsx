@@ -74,6 +74,10 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
+        {/* Scroll reveals need JavaScript: without it, show everything. */}
+        <noscript>
+          <style>{`[data-reveal]{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
         <a
           href="#main"
           className="label sr-only z-[60] bg-fg px-4 py-3 text-bg focus:not-sr-only focus:fixed focus:left-4 focus:top-4"

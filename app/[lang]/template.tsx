@@ -1,17 +1,7 @@
-"use client";
-
-import { motion, useReducedMotion } from "framer-motion";
-
-/** Page transition: a template re-mounts on navigation, so each page fades in. */
+/**
+ * Page transition: a template re-mounts on navigation, so each page plays a
+ * short CSS fade. No JavaScript involved, so content is never held back.
+ */
 export default function Template({ children }: { children: React.ReactNode }) {
-  const reduce = useReducedMotion();
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: reduce ? 0 : 8 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-    >
-      {children}
-    </motion.div>
-  );
+  return <div className="rise">{children}</div>;
 }

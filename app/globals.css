@@ -77,6 +77,18 @@ body {
   mask-image: radial-gradient(ellipse 75% 70% at 50% 45%, #000 30%, transparent 100%);
 }
 
+/* Entrance animations in plain CSS: the first screen never waits for JavaScript. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+@utility rise {
+  animation: rise 0.5s var(--ease-out-expo) both;
+}
+
 @keyframes pulse-dot {
   0%,
   100% {

@@ -6,6 +6,7 @@ import { href, ui, type Locale } from "@/lib/i18n";
 import { isPlaceholder } from "@/content/site";
 import { CoverArt } from "@/components/technical/CoverArt";
 import { CropMarks } from "@/components/ui/MediaFrame";
+import { ButtonLink } from "@/components/ui/ButtonLink";
 
 export function ProjectHeader({ lang, project }: { lang: Locale; project: Project }) {
   const t = ui[lang];
@@ -25,6 +26,15 @@ export function ProjectHeader({ lang, project }: { lang: Locale; project: Projec
           <h1 className="mt-5 text-[clamp(2.5rem,7vw,5.5rem)] font-medium leading-[0.98] tracking-[-0.035em]">
             {project.title}
           </h1>
+          {project.links && (
+            <div className="mt-8 flex flex-wrap gap-3">
+              {project.links.map((link, i) => (
+                <ButtonLink key={link.href} href={link.href} variant={i === 0 ? "primary" : "ghost"} external>
+                  {link.label}
+                </ButtonLink>
+              ))}
+            </div>
+          )}
         </div>
         <p className="max-w-xl text-lg leading-relaxed text-muted lg:col-span-4 lg:self-end">
           {project.intro}

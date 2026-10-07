@@ -33,7 +33,7 @@ export default async function CvPage(props: PageProps<"/[lang]/cv">) {
               {t.site.role} — {t.site.focus.join(", ")}
             </p>
           </div>
-          <ButtonLink href={site.cv} variant="primary" download>
+          <ButtonLink href={site.cv[lang]}variant="primary" download>
             {t.cv.download}
           </ButtonLink>
         </div>

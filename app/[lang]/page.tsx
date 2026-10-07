@@ -8,6 +8,7 @@ import { Skills } from "@/components/sections/Skills";
 import { Experience } from "@/components/sections/Experience";
 import { Contact } from "@/components/sections/Contact";
 import { ProjectFeature } from "@/components/projects/ProjectFeature";
+import { OtherProjects } from "@/components/projects/OtherProjects";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
@@ -55,6 +56,8 @@ export default async function HomePage(props: PageProps<"/[lang]">) {
         </div>
       </section>
 
+      <OtherProjects lang={lang} />
+
       <About lang={lang} index="02" />
       <div className="border-t border-line" />
       <Skills lang={lang} index="03" />
@@ -67,7 +70,7 @@ export default async function HomePage(props: PageProps<"/[lang]">) {
             <p className="label text-dim">{t.home.cvLabel}</p>
             <p className="mt-2 text-xl font-medium tracking-tight">{t.home.cvLine}</p>
           </div>
-          <ButtonLink href={site.cv} variant="primary" download>
+          <ButtonLink href={site.cv[lang]}variant="primary" download>
             {t.home.downloadCv}
           </ButtonLink>
         </div>

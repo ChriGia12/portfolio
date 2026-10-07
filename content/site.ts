@@ -1,7 +1,11 @@
+import type { Locale } from "@/lib/i18n";
+
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 /**
  * Personal data lives here — the only file you need to edit for name,
- * links and contact details. Values wrapped in [BRACKETS] are placeholders.
- * Translated texts (role, tagline, page copy) are in `lib/i18n.ts`.
+ * links and contact details. Translated texts (role, tagline, page copy)
+ * are in `lib/i18n.ts`.
  */
 export const site = {
   name: "Christian Giancola",
@@ -10,17 +14,19 @@ export const site = {
   // NEXT_PUBLIC_SITE_URL there or replace the fallback below.
   url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://your-domain.vercel.app").toLowerCase(),
 
-  // TODO: replace the placeholders below.
-  location: "[CITY, COUNTRY]",
-  university: "[UNIVERSITY NAME]",
-  email: "[your.email@example.com]",
+  location: { en: "Bologna, Italy", it: "Bologna, Italia" } as Record<Locale, string>,
+  university: { en: "University of Bologna", it: "Università di Bologna" } as Record<Locale, string>,
+  email: "christiangiancola23@gmail.com",
   links: {
-    github: "https://github.com/[your-username]",
-    linkedin: "https://www.linkedin.com/in/[your-profile]",
+    github: "https://github.com/ChriGia12",
+    linkedin: "https://www.linkedin.com/in/christian-giancola",
   },
 
-  /** Replace /public/cv.pdf with the real file — the button picks it up. */
-  cv: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/cv.pdf`,
+  /** One PDF per language, in /public. Replace the files to update them. */
+  cv: {
+    en: `${basePath}/Resume_Christian_Giancola.pdf`,
+    it: `${basePath}/CV_Christian_Giancola.pdf`,
+  } as Record<Locale, string>,
 } as const;
 
 export const nav = [

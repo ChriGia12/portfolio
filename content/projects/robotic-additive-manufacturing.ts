@@ -12,7 +12,7 @@ const dir = "/public/projects/robotic-additive-manufacturing";
 
 const shared = {
   slug: "robotic-additive-manufacturing",
-  year: "[YEAR]",
+  year: "2026",
   status: "completed",
   coverArt: "toolpath",
   stack: ["KUKA KR16", "Rhino", "Grasshopper", "KUKA|prc", "Python", "KRL"],
@@ -76,7 +76,7 @@ export const roboticAdditiveManufacturing: Record<Locale, Project> = {
       { label: "Robot", value: "KUKA KR16 · 6 axes" },
       { label: "Process", value: "Planar + non-planar extrusion" },
       { label: "Role", value: "Workflow, post processor, testing" },
-      { label: "Context", value: "[UNIVERSITY LAB / COURSE]" },
+      { label: "Context", value: "University of Bologna · Montecuccolino Laboratory" },
     ],
     pipeline: [
       { name: "Rhino", role: "Part geometry and print surfaces", output: "NURBS" },
@@ -243,7 +243,7 @@ export const roboticAdditiveManufacturing: Record<Locale, Project> = {
       { label: "Robot", value: "KUKA KR16 · 6 assi" },
       { label: "Processo", value: "Estrusione planare + non planare" },
       { label: "Ruolo", value: "Workflow, post processor, test" },
-      { label: "Contesto", value: "[LABORATORIO / CORSO]" },
+      { label: "Contesto", value: "Università di Bologna · Laboratorio di Montecuccolino" },
     ],
     pipeline: [
       { name: "Rhino", role: "Geometria del pezzo e superfici di stampa", output: "NURBS" },

@@ -95,7 +95,8 @@ const en = {
   },
   projects: {
     label: "Projects",
-    title: ["Physical systems, ", "and the software that moves them."],
+    title: ["Physical systems ", "and the software that moves them."],
+    other: "Other projects",
     meta: "Robotics, automation and digital manufacturing projects: robotic additive manufacturing on a KUKA KR16 and a 6-DOF desktop robotic arm.",
     back: "All projects",
     inDev: "In development",
@@ -209,7 +210,8 @@ const it: Dictionary = {
   },
   projects: {
     label: "Progetti",
-    title: ["Sistemi fisici, ", "e il software che li muove."],
+    title: ["Sistemi fisici ", "e il software che li muove."],
+    other: "Altri progetti",
     meta: "Progetti di robotica, automazione e manifattura digitale: additive manufacturing robotico su KUKA KR16 e un braccio robotico desktop a 6 gradi di libertà.",
     back: "Tutti i progetti",
     inDev: "In sviluppo",
