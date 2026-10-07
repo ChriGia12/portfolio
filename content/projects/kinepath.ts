@@ -1,11 +1,12 @@
 import type { Project } from "@/lib/types";
 import type { Locale } from "@/lib/i18n";
 
-const dir = "/public/projects/kinepath";
+/** Media files live in public/projects/kinepath/. */
+const img = "/projects/kinepath";
 
 /**
- * Written from the KinePath README. Screenshots and the demo video are
- * placeholders until the files are added (see `hint` on each media slot).
+ * Written from the KinePath README. The screenshots were taken from the
+ * live application with the reference part of its test suite loaded.
  */
 const shared = {
   slug: "kinepath",
@@ -14,7 +15,12 @@ const shared = {
   status: "completed",
   coverArt: "slicer",
   stack: ["TypeScript", "Three.js", "WebAssembly", "OpenCascade", "KRL", "Vitest", "Playwright"],
-  // cover: { kind: "screenshot", label: "KinePath", src: "/projects/kinepath/cover.png", alt: "…" },
+  cover: {
+    kind: "screenshot",
+    label: "KinePath",
+    src: `${img}/cover.jpg`,
+    alt: "KinePath: the KUKA cell in 3D with a part on the table, its toolpath and the simulation panel",
+  },
 } as const;
 
 const app = "https://chrigia12.github.io/KinePath/";
@@ -190,10 +196,20 @@ export const kinepath: Record<Locale, Project> = {
         id: "gallery",
         title: "Gallery",
         media: [
-          { kind: "screenshot", label: "Model, orientation and cell", aspect: "16/9", hint: `${dir}/app-01.png` },
-          { kind: "screenshot", label: "Toolpath and risk zones", aspect: "4/3", hint: `${dir}/toolpath.png` },
-          { kind: "screenshot", label: "Simulation", aspect: "4/3", hint: `${dir}/simulation.png` },
-          { kind: "video", label: "Demo video", aspect: "16/9", hint: `${dir}/demo.mp4` },
+          {
+            kind: "screenshot",
+            label: "Simulation — the robot halfway through the program",
+            aspect: "16/9",
+            src: `${img}/simulation.jpg`,
+            alt: "Close view of the robot following the toolpath, with the current LIN line and axis angles",
+          },
+          {
+            kind: "screenshot",
+            label: "Result — layers, LIN points and axis ranges",
+            aspect: "16/9",
+            src: `${img}/result.jpg`,
+            alt: "Result panel listing layers, LIN points, print length, extent in BASE and the range of each robot axis",
+          },
         ],
       },
     ],
@@ -368,10 +384,20 @@ export const kinepath: Record<Locale, Project> = {
         id: "gallery",
         title: "Galleria",
         media: [
-          { kind: "screenshot", label: "Modello, orientamento e cella", aspect: "16/9", hint: `${dir}/app-01.png` },
-          { kind: "screenshot", label: "Toolpath e zone a rischio", aspect: "4/3", hint: `${dir}/toolpath.png` },
-          { kind: "screenshot", label: "Simulazione", aspect: "4/3", hint: `${dir}/simulation.png` },
-          { kind: "video", label: "Video dimostrativo", aspect: "16/9", hint: `${dir}/demo.mp4` },
+          {
+            kind: "screenshot",
+            label: "Simulazione — il robot a metà programma",
+            aspect: "16/9",
+            src: `${img}/simulation.jpg`,
+            alt: "Vista ravvicinata del robot che segue il toolpath, con la riga LIN corrente e gli angoli degli assi",
+          },
+          {
+            kind: "screenshot",
+            label: "Risultato — strati, punti LIN e corse degli assi",
+            aspect: "16/9",
+            src: `${img}/result.jpg`,
+            alt: "Pannello dei risultati con strati, punti LIN, lunghezza di stampa, estensione in BASE e corsa di ogni asse",
+          },
         ],
       },
     ],
