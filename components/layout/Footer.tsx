@@ -1,0 +1,41 @@
+import Link from "next/link";
+import { nav, site } from "@/content/site";
+import { AxisTriad } from "@/components/technical/AxisTriad";
+
+export function Footer() {
+  return (
+    <footer className="border-t border-line">
+      <div className="shell flex flex-col gap-8 py-10 md:flex-row md:items-end md:justify-between">
+        <div className="flex items-end gap-4">
+          <AxisTriad size={44} />
+          <div>
+            <p className="text-sm font-medium">{site.name}</p>
+            <p className="label mt-1 text-dim">{site.role}</p>
+          </div>
+        </div>
+
+        <nav aria-label="Footer">
+          <ul className="label flex flex-wrap gap-x-6 gap-y-3 text-muted">
+            {nav.map((item) => (
+              <li key={item.href}>
+                <Link href={item.href} className="transition-colors hover:text-fg">
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+            <li>
+              <a href={site.links.github} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-fg">
+                GitHub ↗
+              </a>
+            </li>
+            <li>
+              <a href={site.links.linkedin} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-fg">
+                LinkedIn ↗
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </footer>
+  );
+}
