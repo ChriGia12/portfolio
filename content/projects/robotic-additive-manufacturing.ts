@@ -286,7 +286,7 @@ export const roboticAdditiveManufacturing: Record<Locale, Project> = {
         title: "Gallery",
         media: [
           { kind: "image", label: "Robot cell — KUKA on the linear axis", aspect: "1/1", fit: "contain", src: `${img}/cell.png`, alt: "KUKA robot mounted on a linear axis next to the work table" },
-          { kind: "image", label: "Extruder on the flange", aspect: "3/4", src: `${img}/extruder.jpg`, alt: "Extruder with hopper mounted on the robot flange" },
+          { kind: "image", label: "Extruder on the flange", aspect: "3/4", position: "bottom", src: `${img}/extruder.jpg`, alt: "Extruder with hopper mounted on the robot flange" },
           { kind: "screenshot", label: "KUKA|prc — simulation", aspect: "16/9", src: `${img}/prc-01.jpg`, alt: "Rhino viewport with the robot, the linear axis and a toolpath over the table" },
           { kind: "image", label: "Honeycomb — print", aspect: "3/4", src: `${img}/honeycomb.jpg`, alt: "Printed honeycomb structure on the print bed" },
           { kind: "image", label: "Design chair — print", aspect: "3/4", src: `${img}/sedia.jpg`, alt: "Robot printing the curved shell of a chair" },
@@ -466,7 +466,7 @@ export const roboticAdditiveManufacturing: Record<Locale, Project> = {
         title: "Galleria",
         media: [
           { kind: "image", label: "Cella robotica — KUKA su asse lineare", aspect: "1/1", fit: "contain", src: `${img}/cell.png`, alt: "Robot KUKA montato su un asse lineare accanto al piano di lavoro" },
-          { kind: "image", label: "Estrusore sulla flangia", aspect: "3/4", src: `${img}/extruder.jpg`, alt: "Estrusore con tramoggia montato sulla flangia del robot" },
+          { kind: "image", label: "Estrusore sulla flangia", aspect: "3/4", position: "bottom", src: `${img}/extruder.jpg`, alt: "Estrusore con tramoggia montato sulla flangia del robot" },
           { kind: "screenshot", label: "KUKA|prc — simulazione", aspect: "16/9", src: `${img}/prc-01.jpg`, alt: "Vista Rhino con il robot, l’asse lineare e un percorso utensile sopra il tavolo" },
           { kind: "image", label: "Honeycomb — stampa", aspect: "3/4", src: `${img}/honeycomb.jpg`, alt: "Struttura a nido d’ape stampata sul piano di stampa" },
           { kind: "image", label: "Sedia da design — stampa", aspect: "3/4", src: `${img}/sedia.jpg`, alt: "Robot che stampa il guscio curvo di una sedia" },

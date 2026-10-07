@@ -14,6 +14,8 @@ export type Media = {
   aspect?: "16/9" | "4/3" | "1/1" | "3/4" | "21/9" | "2/1";
   /** "contain" shows the whole file (screenshots, diagrams); default crops to fill. */
   fit?: "cover" | "contain";
+  /** Which part of the picture to keep when it is cropped. Default: centre. */
+  position?: "top" | "bottom";
   /** Still image shown before a video plays. */
   poster?: string;
   /** Where the real file should go (shown on the placeholder). */

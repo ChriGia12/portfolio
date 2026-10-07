@@ -125,7 +125,7 @@ export function CaseStudy({ lang, project }: { lang: Locale; project: Project })
             )}
 
             {s.media && (
-              <div className="mt-10 grid gap-x-6 gap-y-10 sm:grid-cols-2">
+              <div className="mt-10 grid items-center gap-x-6 gap-y-10 sm:grid-cols-2">
                 {s.media.map((m) => (
                   <Reveal key={m.label} className={wide(m.aspect) ? "sm:col-span-2" : ""}>
                     <MediaFrame lang={lang} media={m} />

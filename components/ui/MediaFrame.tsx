@@ -36,7 +36,9 @@ export function MediaFrame({
 }) {
   const aspect = (media.aspect ?? "16/9").replace("/", " / ");
   const kindLabel = ui[lang].projects.kinds;
-  const fit = media.fit === "contain" ? "object-contain" : "object-cover";
+  const position =
+    media.position === "top" ? "object-top" : media.position === "bottom" ? "object-bottom" : "";
+  const fit = `${media.fit === "contain" ? "object-contain" : "object-cover"} ${position}`;
 
   return (
     <figure className="min-w-0">
