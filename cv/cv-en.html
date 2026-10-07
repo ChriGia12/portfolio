@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Christian Giancola — Resume</title>
+<meta name="author" content="Christian Giancola">
+<style>
+  /* One A4 page. Plain system font and no ligatures, so the text extracts cleanly (ATS). */
+  @page { size: A4; margin: 13mm 15mm 12mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, Helvetica, sans-serif; font-size: 8.75pt; line-height: 1.32; color: #1a1a1c; font-variant-ligatures: none; font-kerning: none; }
+  a { color: inherit; text-decoration: none; }
+  h1 { font-size: 23pt; line-height: 1.05; letter-spacing: -0.4pt; font-weight: 700; }
+  .tagline { margin-top: 3pt; font-size: 8.4pt; letter-spacing: 1.1pt; text-transform: uppercase; font-weight: 700; color: #c2410c; }
+  .contacts { margin-top: 5pt; font-size: 8.1pt; color: #44444a; white-space: nowrap; }
+  .contacts span + span::before { content: " · "; color: #9a9aa2; }
+  h2 { margin: 8pt 0 3.5pt; padding-bottom: 2.5pt; border-bottom: 0.6pt solid #c9c9cf; font-size: 8.4pt; letter-spacing: 1.3pt; text-transform: uppercase; font-weight: 700; }
+  .row { display: flex; justify-content: space-between; gap: 12pt; align-items: baseline; }
+  .row .what { font-weight: 700; font-size: 9.6pt; }
+  .row .what .org { font-weight: 400; color: #44444a; }
+  .row .when { white-space: nowrap; font-weight: 700; font-size: 8.7pt; }
+  .place { font-style: italic; color: #5c5c63; font-size: 8.6pt; }
+  ul { margin: 2pt 0 0 11pt; }
+  li { margin-top: 1.2pt; }
+  .item + .item { margin-top: 4.5pt; }
+  .skills p { margin-top: 2pt; }
+  .skills b, .inline b { font-weight: 700; }
+  .inline { margin-top: 2pt; }
+</style>
+</head>
+<body>
+
+<h1>Christian Giancola</h1>
+<p class="tagline">Mechanical Engineering · Robotic CAM · Engineering Software</p>
+<p class="contacts">
+  <span>Bologna, Italy</span>
+  <span><a href="mailto:christiangiancola23@gmail.com">christiangiancola23@gmail.com</a></span>
+  <span><a href="https://www.linkedin.com/in/christian-giancola">linkedin.com/in/christian-giancola</a></span>
+  <span><a href="https://chrigia12.github.io/portfolio/">chrigia12.github.io/portfolio</a></span>
+  <span><a href="https://github.com/ChriGia12">github.com/ChriGia12</a></span>
+</p>
+
+<h2>Profile</h2>
+<p>Mechanical Engineering BSc candidate focused on robotic additive manufacturing, computational geometry and engineering software. I develop multi-axis toolpaths in Rhino and Grasshopper and Python postprocessors for KRL generation, coordinate transformations, tool orientation, extrusion control and external-axis coordination. I want to apply this combination of manufacturing knowledge and software development to automated CAD, CAM and robotic process-planning workflows.</p>
+
+<h2>Experience</h2>
+<div class="item">
+  <div class="row"><span class="what">Industrial Robotics and Additive Manufacturing Intern <span class="org">| University of Bologna</span></span><span class="when">2026 – Present</span></div>
+  <p class="place">Montecuccolino Laboratory, Bologna</p>
+  <ul>
+    <li>Developed software-driven toolpaths for robotic material deposition using a six-axis KUKA robot, Rhino 8, Grasshopper and KUKA|prc.</li>
+    <li>Designed planar, inclined and non-planar slicing strategies for complex surfaces and multi-axis trajectories.</li>
+    <li>Developed Python postprocessors that convert geometric path data into KRL programs and manage coordinate transformations, tool orientation, extrusion, an external linear axis, homing and purge sequences.</li>
+    <li>Integrated, configured and tested a system comprising the robot, extrusion unit, tool and external linear axis.</li>
+    <li>Built parametric geometry-processing workflows for curve ordering, path continuity, surface-normal control and local tool-frame generation.</li>
+    <li>Simulated and checked reachability, singularities, orientation and trajectories before execution on the robot.</li>
+    <li>Performed hands-on printing tests and iteratively modified geometry, process parameters and code based on observed results.</li>
+  </ul>
+</div>
+
+<h2>Projects</h2>
+<div class="item">
+  <div class="row"><span class="what">KinePath <span class="org">| Personal software project · <a href="https://chrigia12.github.io/KinePath/">chrigia12.github.io/KinePath</a></span></span><span class="when">2026</span></div>
+  <ul>
+    <li>TypeScript web application that imports meshes and BREPs, generates planar and non-planar toolpaths, checks kinematics and collisions for the KUKA KR16 and exports KRL programs. Developed from laboratory process-planning requirements.</li>
+  </ul>
+</div>
+<div class="item">
+  <div class="row"><span class="what">Toolpath Check <span class="org">| Personal software project</span></span><span class="when">2026</span></div>
+  <ul>
+    <li>Browser-based tool for analysing and validating robotic paths through geometric checks, program inspection and workflow automation.</li>
+  </ul>
+</div>
+<div class="item">
+  <div class="row"><span class="what">FrameForge <span class="org">| Personal software project</span></span><span class="when">2026</span></div>
+  <ul>
+    <li>Browser-based platform for generating usable CAD geometry from images, videos and mechanical drawings.</li>
+  </ul>
+</div>
+
+<h2>Education</h2>
+<div class="item">
+  <div class="row"><span class="what">BSc in Mechanical Engineering <span class="org">| University of Bologna</span></span><span class="when">2023 – Present</span></div>
+  <ul>
+    <li>Experimental thesis, in progress, on the generation and control of toolpaths for robotic additive manufacturing.</li>
+    <li>Main areas: mechanics, mechanical design, manufacturing technology, automation, programming and industrial systems.</li>
+  </ul>
+</div>
+<div class="item">
+  <div class="row"><span class="what">First-level Academic Diploma Programme in Classical Guitar <span class="org">| Bologna Conservatory</span></span><span class="when">2024 – Present</span></div>
+</div>
+
+<h2>Technical skills</h2>
+<div class="skills">
+  <p><b>Automation and robotics:</b> KUKA KRL, KUKA|prc, offline programming, simulation, six-axis robots, external axes</p>
+  <p><b>Robotic CAM:</b> robotic deposition, planar and non-planar slicing, multi-axis toolpaths, tool orientation, collision-aware planning, technical validation</p>
+  <p><b>Software development:</b> Python, TypeScript, C++, Three.js, postprocessing, geometric-data processing, automated testing, browser-based engineering tools</p>
+  <p><b>Computational design:</b> Rhino 8, Grasshopper, curves, surfaces, BREPs, meshes, data trees, computational geometry</p>
+  <p><b>CAD and drafting:</b> PTC Creo, AutoCAD, 3D modelling, technical drawings</p>
+  <p><b>Engineering methods:</b> prototyping, machine testing, troubleshooting, technical documentation, iterative improvement</p>
+</div>
+
+<h2>Languages and additional information</h2>
+<p class="inline"><b>Italian:</b> native · <b>English:</b> B2, Cambridge First Certificate (Grade C), used for technical documentation and communication</p>
+<p class="inline">Italian and EU citizen · Driving licence B · Basketball referee · Available from February 2027 for short technical placements and engineering software projects</p>
+
+</body>
+</html>

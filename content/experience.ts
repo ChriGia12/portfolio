@@ -18,12 +18,12 @@ export const experience: Record<Locale, ExperienceEntry[]> = {
       organisation: "University of Bologna",
       type: "Education",
       description:
-        "Experimental thesis on the generation and control of toolpaths for robotic additive manufacturing.",
+        "Experimental thesis, in progress, on the generation and control of toolpaths for robotic additive manufacturing.",
     },
     {
       period: "2024 — Present",
-      title: "Academic Diploma in Classical Guitar",
-      organisation: "Conservatory",
+      title: "First-level Academic Diploma Programme in Classical Guitar",
+      organisation: "Bologna Conservatory",
       type: "Education",
       description:
         "Parallel programme requiring precision, discipline and long-term management of complex activities.",
@@ -44,12 +44,12 @@ export const experience: Record<Locale, ExperienceEntry[]> = {
       organisation: "Università di Bologna",
       type: "Education",
       description:
-        "Tesi sperimentale sulla generazione e sul controllo di toolpath per processi robotizzati di manifattura additiva.",
+        "Tesi sperimentale, in corso, sulla generazione e sul controllo di toolpath per processi robotizzati di manifattura additiva.",
     },
     {
       period: "2024 — in corso",
-      title: "Diploma accademico in Chitarra classica",
-      organisation: "Conservatorio",
+      title: "Corso di Diploma Accademico di Primo Livello in Chitarra Classica",
+      organisation: "Conservatorio di Bologna",
       type: "Education",
       description:
         "Percorso parallelo dedicato a precisione esecutiva, disciplina e gestione di attività complesse nel tempo.",

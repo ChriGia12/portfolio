@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Christian Giancola — Curriculum Vitae</title>
+<meta name="author" content="Christian Giancola">
+<style>
+  /* One A4 page. Plain system font and no ligatures, so the text extracts cleanly (ATS). */
+  @page { size: A4; margin: 13mm 15mm 12mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, Helvetica, sans-serif; font-size: 9.1pt; line-height: 1.36; color: #1a1a1c; font-variant-ligatures: none; font-kerning: none; }
+  a { color: inherit; text-decoration: none; }
+  h1 { font-size: 23pt; line-height: 1.05; letter-spacing: -0.4pt; font-weight: 700; }
+  .tagline { margin-top: 3pt; font-size: 8.4pt; letter-spacing: 1.1pt; text-transform: uppercase; font-weight: 700; color: #c2410c; }
+  .contacts { margin-top: 5pt; font-size: 8.1pt; color: #44444a; white-space: nowrap; }
+  .contacts span + span::before { content: " · "; color: #9a9aa2; }
+  h2 { margin: 10pt 0 4pt; padding-bottom: 2.5pt; border-bottom: 0.6pt solid #c9c9cf; font-size: 8.4pt; letter-spacing: 1.3pt; text-transform: uppercase; font-weight: 700; }
+  .row { display: flex; justify-content: space-between; gap: 12pt; align-items: baseline; }
+  .row .what { font-weight: 700; font-size: 9.6pt; }
+  .row .what .org { font-weight: 400; color: #44444a; }
+  .row .when { white-space: nowrap; font-weight: 700; font-size: 8.7pt; }
+  .place { font-style: italic; color: #5c5c63; font-size: 8.6pt; }
+  ul { margin: 2pt 0 0 11pt; }
+  li { margin-top: 1.2pt; }
+  .item + .item { margin-top: 6pt; }
+  .skills p { margin-top: 2pt; }
+  .skills b, .inline b { font-weight: 700; }
+  .inline { margin-top: 2pt; }
+</style>
+</head>
+<body>
+
+<h1>Christian Giancola</h1>
+<p class="tagline">Ingegneria Meccanica · Robotica industriale · Manifattura additiva</p>
+<p class="contacts">
+  <span>Bologna, Italia</span>
+  <span><a href="mailto:christiangiancola23@gmail.com">christiangiancola23@gmail.com</a></span>
+  <span><a href="https://www.linkedin.com/in/christian-giancola">linkedin.com/in/christian-giancola</a></span>
+  <span><a href="https://chrigia12.github.io/portfolio/">chrigia12.github.io/portfolio</a></span>
+  <span><a href="https://github.com/ChriGia12">github.com/ChriGia12</a></span>
+</p>
+
+<h2>Profilo</h2>
+<p>Laureando in Ingegneria Meccanica con esperienza pratica in robotica industriale, automazione e manifattura additiva. Programmo e verifico sistemi robotici KUKA, sviluppo workflow in Rhino e Grasshopper e postprocessori Python che trasformano geometrie e toolpath in programmi KRL. Unisco progettazione meccanica, modellazione parametrica, simulazione robotica e sviluppo software per risolvere problemi di produzione reali.</p>
+
+<h2>Esperienza</h2>
+<div class="item">
+  <div class="row"><span class="what">Tirocinante in robotica industriale e manifattura additiva <span class="org">| Università di Bologna</span></span><span class="when">2026 – in corso</span></div>
+  <p class="place">Laboratorio di Montecuccolino, Bologna</p>
+  <ul>
+    <li>Sviluppo di toolpath per deposizione robotizzata con robot KUKA a 6 assi, con Rhino 8, Grasshopper e KUKA|prc.</li>
+    <li>Progettazione di strategie di slicing planare, inclinato e non planare per superfici e geometrie complesse.</li>
+    <li>Sviluppo in Python di postprocessori che generano programmi KRL e gestiscono orientamento utensile, estrusione, asse esterno, sequenze di home e spurgo.</li>
+    <li>Integrazione di un sistema elettromeccanico composto da robot, estrusore, utensile e asse lineare esterno.</li>
+    <li>Workflow parametrici per ordinamento delle curve, continuità dei percorsi, controllo delle normali e generazione dei piani utensile.</li>
+    <li>Simulazione e verifica di raggiungibilità, singolarità, orientamento e traiettorie prima dell’esecuzione sul robot.</li>
+    <li>Prove sperimentali sul robot, analisi degli errori e modifica iterativa di parametri di processo e codice, in un gruppo multidisciplinare.</li>
+  </ul>
+</div>
+
+<h2>Progetti</h2>
+<div class="item">
+  <div class="row"><span class="what">KinePath <span class="org">| Progetto software personale · <a href="https://chrigia12.github.io/KinePath/">chrigia12.github.io/KinePath</a></span></span><span class="when">2026</span></div>
+  <ul>
+    <li>Applicazione web in TypeScript che importa mesh e BREP, genera toolpath planari e non planari, verifica cinematica e collisioni del KUKA KR16 ed esporta programmi KRL. Nata dalle esigenze emerse durante le prove di laboratorio.</li>
+  </ul>
+</div>
+<div class="item">
+  <div class="row"><span class="what">Toolpath Check <span class="org">| Progetto software personale</span></span><span class="when">2026</span></div>
+  <ul>
+    <li>Strumento per analizzare e validare percorsi robotici prima dell’esecuzione, con controlli geometrici e supporto alla lettura dei programmi di lavorazione.</li>
+  </ul>
+</div>
+<div class="item">
+  <div class="row"><span class="what">FrameForge <span class="org">| Progetto software personale</span></span><span class="when">2026</span></div>
+  <ul>
+    <li>Piattaforma sperimentale per ricostruire modelli CAD da immagini, video e disegni meccanici.</li>
+  </ul>
+</div>
+
+<h2>Formazione</h2>
+<div class="item">
+  <div class="row"><span class="what">Laurea in Ingegneria Meccanica <span class="org">| Università di Bologna</span></span><span class="when">2023 – in corso</span></div>
+  <ul>
+    <li>Tesi sperimentale, in corso, sulla generazione e sul controllo di toolpath per processi robotizzati di manifattura additiva.</li>
+    <li>Ambiti principali: meccanica, disegno tecnico, progettazione, tecnologia meccanica, automazione, informatica e sistemi industriali.</li>
+  </ul>
+</div>
+<div class="item">
+  <div class="row"><span class="what">Corso di Diploma Accademico di Primo Livello in Chitarra Classica <span class="org">| Conservatorio di Bologna</span></span><span class="when">2024 – in corso</span></div>
+</div>
+
+<h2>Competenze tecniche</h2>
+<div class="skills">
+  <p><b>Robotica e automazione:</b> KUKA KRL, KUKA|prc, programmazione offline, simulazione, toolpath, robot a 6 assi, assi esterni</p>
+  <p><b>Manifattura:</b> deposizione robotizzata, slicing planare e non planare, continuità del percorso, orientamento utensile, estrusione</p>
+  <p><b>Sviluppo software:</b> Python, TypeScript, C++, Three.js, postprocessing, elaborazione di dati geometrici, test automatici</p>
+  <p><b>Progettazione parametrica:</b> Rhino 8, Grasshopper, curve, superfici, BREP, mesh, geometria computazionale</p>
+  <p><b>CAD e disegno:</b> PTC Creo, AutoCAD, modellazione 3D, lettura e produzione di disegni tecnici</p>
+  <p><b>Metodo:</b> prototipazione, test sperimentali, troubleshooting, documentazione tecnica, validazione dei risultati</p>
+</div>
+
+<h2>Lingue e informazioni aggiuntive</h2>
+<p class="inline"><b>Italiano:</b> madrelingua · <b>Inglese:</b> B2, Cambridge First Certificate (Grade C), uso in contesti tecnici e professionali</p>
+<p class="inline">Patente B · Arbitro di pallacanestro · Disponibile per attività R&amp;D compatibili con il percorso universitario</p>
+
+</body>
+</html>

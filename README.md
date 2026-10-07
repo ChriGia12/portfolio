@@ -42,8 +42,16 @@ Contacts, CVs, university and experience are real. Still to complete:
 - `public/portrait.jpg` for the About page
 - `content/projects/desktop-robotic-arm.ts` — phase statuses and log entries as the build progresses
 
-The CVs are `public/CV_Christian_Giancola.pdf` (Italian pages) and
-`public/Resume_Christian_Giancola.pdf` (English pages): overwrite the files to update them.
+## CVs
+
+The site serves `public/CV_Christian_Giancola.pdf` on the Italian pages and
+`public/Resume_Christian_Giancola.pdf` on the English ones. Their sources are
+`cv/cv-it.html` and `cv/cv-en.html`: one A4 page each, plain font and real text
+so that applicant-tracking systems can read them.
+
+To update a CV, edit the HTML, open it in Chrome, print it (Cmd+P) to PDF with
+margins "Default" and headers/footers off, check it is still one page, and save
+it over the file in `public/`.
 
 ## Adding images and video
 
