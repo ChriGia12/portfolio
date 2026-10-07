@@ -126,7 +126,7 @@ export const roboticAdditiveManufacturing: Record<Locale, Project> = {
     intro:
       "A university and experimental project built around a 6-axis industrial robot. I designed the workflow from parametric toolpath to robot code, wrote the Python post processor that generates KRL, and tested the result on the real machine.",
     specs: [
-      { label: "Robot", value: "KUKA KR16 · 6 axes" },
+      { label: "Robot", value: "KUKA KR16 R2010 · 6 axes" },
       { label: "Process", value: "Planar + non-planar extrusion" },
       { label: "Role", value: "Workflow, post processor, testing" },
       { label: "Context", value: "University of Bologna · Montecuccolino Laboratory" },
@@ -306,7 +306,7 @@ export const roboticAdditiveManufacturing: Record<Locale, Project> = {
     intro:
       "Un progetto universitario e sperimentale costruito attorno a un robot industriale a 6 assi. Ho progettato il workflow dal percorso utensile parametrico al codice robot, ho scritto il post processor Python che genera il KRL e ho provato il risultato sulla macchina reale.",
     specs: [
-      { label: "Robot", value: "KUKA KR16 · 6 assi" },
+      { label: "Robot", value: "KUKA KR16 R2010 · 6 assi" },
       { label: "Processo", value: "Estrusione planare + non planare" },
       { label: "Ruolo", value: "Workflow, post processor, test" },
       { label: "Contesto", value: "Università di Bologna · Laboratorio di Montecuccolino" },
