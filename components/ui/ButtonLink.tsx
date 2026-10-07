@@ -16,7 +16,7 @@ const base =
 const variants = {
   primary: "h-11 bg-fg px-5 text-bg hover:bg-accent",
   ghost: "h-11 border border-line px-5 text-fg hover:border-fg",
-  text: "text-muted hover:text-fg",
+  text: "min-h-11 text-muted hover:text-fg",
 };
 
 export function ButtonLink({

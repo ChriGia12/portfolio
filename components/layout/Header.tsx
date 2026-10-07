@@ -67,7 +67,7 @@ export function Header({ lang }: { lang: Locale }) {
         <Link
           href={href(lang)}
           onClick={() => setOpen(false)}
-          className="group flex items-center gap-3 text-sm font-medium tracking-tight"
+          className="group flex h-11 items-center gap-3 text-sm font-medium tracking-tight"
         >
           <span aria-hidden className="h-2 w-2 bg-accent transition-transform duration-500 ease-out-expo group-hover:rotate-90" />
           {site.name}

@@ -12,7 +12,9 @@ export function CaseStudy({ lang, project }: { lang: Locale; project: Project })
   const sections = project.caseStudy ?? [];
   const t = ui[lang];
   return (
-    <div className="shell mt-20 grid gap-x-8 lg:mt-28 lg:grid-cols-12">
+    <div className="shell mt-14 sm:mt-20 lg:mt-28">
+      <CaseNav variant="bar" label={t.a11y.sections} sections={sections.map(({ id, title }) => ({ id, title }))} />
+      <div className="mt-10 grid gap-x-8 lg:mt-0 lg:grid-cols-12">
       <aside className="hidden lg:col-span-3 lg:block">
         <div className="sticky top-28">
           <CaseNav label={t.a11y.sections} sections={sections.map(({ id, title }) => ({ id, title }))} />
@@ -115,7 +117,7 @@ export function CaseStudy({ lang, project }: { lang: Locale; project: Project })
             )}
 
             {s.code && (
-              <div className="mt-10 grid gap-6">
+              <div className="mt-10 grid grid-cols-[minmax(0,1fr)] gap-6">
                 {s.code.map((c) => (
                   <Reveal key={c.filename}>
                     <CodeBlock sample={c} />
@@ -135,6 +137,7 @@ export function CaseStudy({ lang, project }: { lang: Locale; project: Project })
             )}
           </section>
         ))}
+      </div>
       </div>
     </div>
   );

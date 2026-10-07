@@ -52,7 +52,7 @@ const en = {
     selected: "Selected Projects",
     all: "All projects",
     cvLabel: "Curriculum Vitae",
-    cvLine: "The short version, on one page.",
+    cvLine: "Education, experience and skills, as a PDF.",
     downloadCv: "Download CV",
   },
   about: {
@@ -69,8 +69,8 @@ const en = {
     ],
     paragraphs: [
       "I’m Christian Giancola, a Mechanical Engineering student. Over the course of my studies my interest has moved steadily towards robotics, automation and the software that runs physical machines.",
-      "I work best where disciplines overlap: modelling a part in CAD, planning how a robot should move to build it, and writing the code that turns that plan into motion. Robotic additive manufacturing on a 6-axis KUKA was where those pieces first came together for me.",
-      "Right now I’m designing my own six-axis desktop arm from scratch, to understand every layer of a robot — structure, transmissions, electronics, kinematics and control.",
+      "I work between mechanical design, robotics and software development: modelling a part in CAD, planning how a robot should move to build it, and writing the code that turns that plan into motion. Robotic additive manufacturing on a 6-axis KUKA was where those pieces first came together for me.",
+      "Right now I’m developing KinePath, a web application that turns CAD models and meshes into toolpaths and KRL programs. Alongside it I’m setting up the design of a six-axis desktop robotic arm.",
     ],
     basedIn: "Based in",
     studyingAt: "Studying at",
@@ -78,7 +78,7 @@ const en = {
     portrait: "Portrait",
     meta: "Mechanical Engineering student with a growing focus on robotics, automation and software applied to physical systems.",
   },
-  skills: { label: "Skills" },
+  skills: { label: "Skills", learning: "Currently studying" },
   experience: {
     label: "Experience & Education",
     types: {
@@ -91,6 +91,8 @@ const en = {
   contact: {
     label: "Contact",
     title: ["Let’s build", "something"],
+    availability:
+      "Available for collaborations, technical internships and R&D projects in robotics and advanced manufacturing.",
     email: "Email",
     meta: "Get in touch with Christian Giancola — email, LinkedIn and GitHub.",
   },
@@ -98,7 +100,7 @@ const en = {
     label: "Projects",
     title: ["Physical systems ", "and the software that moves them."],
     other: "Other projects",
-    meta: "Robotics, automation and digital manufacturing projects: robotic additive manufacturing on a KUKA KR16 and a 6-DOF desktop robotic arm.",
+    meta: "Robotics and digital manufacturing projects: robotic additive manufacturing on a KUKA KR16, KinePath (a web application from CAD to KRL) and a 6-DOF desktop robotic arm.",
     back: "All projects",
     inDev: "In development",
     caseStudy: "Case study",
@@ -168,7 +170,7 @@ const it: Dictionary = {
     selected: "Progetti selezionati",
     all: "Tutti i progetti",
     cvLabel: "Curriculum Vitae",
-    cvLine: "La versione breve, in una pagina.",
+    cvLine: "Formazione, esperienza e competenze, in PDF.",
     downloadCv: "Scarica il CV",
   },
   about: {
@@ -185,8 +187,8 @@ const it: Dictionary = {
     ],
     paragraphs: [
       "Sono Christian Giancola, studente di Ingegneria Meccanica. Nel corso degli studi il mio interesse si è spostato sempre di più verso la robotica, l’automazione e il software che fa funzionare le macchine.",
-      "Do il meglio dove le discipline si incontrano: modellare un pezzo in CAD, pianificare come un robot deve muoversi per realizzarlo e scrivere il codice che trasforma quel piano in movimento. L’additive manufacturing robotico su un KUKA a 6 assi è stato il primo progetto in cui questi pezzi si sono uniti.",
-      "In questo momento sto progettando da zero un mio braccio desktop a sei assi, per capire ogni livello di un robot: struttura, trasmissioni, elettronica, cinematica e controllo.",
+      "Lavoro tra progettazione meccanica, robotica e sviluppo software: modellare un pezzo in CAD, pianificare come un robot deve muoversi per realizzarlo e scrivere il codice che trasforma quel piano in movimento. L’additive manufacturing robotico su un KUKA a 6 assi è stato il primo progetto in cui questi pezzi si sono uniti.",
+      "In questo momento sto sviluppando KinePath, un’applicazione web che trasforma modelli CAD e mesh in toolpath e programmi KRL. In parallelo sto impostando il progetto di un braccio robotico desktop a sei assi.",
     ],
     basedIn: "Dove vivo",
     studyingAt: "Dove studio",
@@ -194,7 +196,7 @@ const it: Dictionary = {
     portrait: "Ritratto",
     meta: "Studente di Ingegneria Meccanica con un interesse crescente per robotica, automazione e software applicato ai sistemi fisici.",
   },
-  skills: { label: "Competenze" },
+  skills: { label: "Competenze", learning: "Attualmente in studio" },
   experience: {
     label: "Esperienza e formazione",
     types: {
@@ -207,6 +209,8 @@ const it: Dictionary = {
   contact: {
     label: "Contatti",
     title: ["Costruiamo", "qualcosa"],
+    availability:
+      "Disponibile per collaborazioni, tirocini tecnici e progetti R&D in robotica e manifattura avanzata.",
     email: "Email",
     meta: "Contatta Christian Giancola — email, LinkedIn e GitHub.",
   },
@@ -214,7 +218,7 @@ const it: Dictionary = {
     label: "Progetti",
     title: ["Sistemi fisici ", "e il software che li muove."],
     other: "Altri progetti",
-    meta: "Progetti di robotica, automazione e manifattura digitale: additive manufacturing robotico su KUKA KR16 e un braccio robotico desktop a 6 gradi di libertà.",
+    meta: "Progetti di robotica e manifattura digitale: additive manufacturing robotico su KUKA KR16, KinePath (applicazione web dal CAD al KRL) e un braccio robotico desktop a 6 gradi di libertà.",
     back: "Tutti i progetti",
     inDev: "In sviluppo",
     caseStudy: "Case study",

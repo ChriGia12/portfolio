@@ -8,7 +8,7 @@ export function OtherProjects({ lang }: { lang: Locale }) {
   const items = minorProjects[lang];
   if (items.length === 0) return null;
   return (
-    <section aria-labelledby="other-projects-title" className="shell pt-24 lg:pt-32">
+    <section aria-labelledby="other-projects-title" className="shell pt-16 sm:pt-24 lg:pt-32">
       <SectionLabel>
         <span id="other-projects-title">{ui[lang].projects.other}</span>
       </SectionLabel>

@@ -6,7 +6,7 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
 export function Experience({ lang, index }: { lang: Locale; index?: string }) {
   const t = ui[lang].experience;
   return (
-    <section aria-labelledby="experience-title" className="shell py-24 lg:py-32">
+    <section aria-labelledby="experience-title" className="shell py-16 sm:py-24 lg:py-32">
       <SectionLabel index={index}>
         <span id="experience-title">{t.label}</span>
       </SectionLabel>

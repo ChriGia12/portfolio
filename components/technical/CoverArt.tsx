@@ -292,7 +292,8 @@ export function CoverArt({ kind, label }: { kind: CoverArtKind; label: string })
   return (
     <svg
       viewBox="0 0 1600 900"
-      preserveAspectRatio="xMidYMid slice"
+      // "meet": the whole drawing stays visible on narrow (phone) frames instead of being cropped
+      preserveAspectRatio="xMidYMid meet"
       className="absolute inset-0 h-full w-full"
       fill="none"
       role="img"

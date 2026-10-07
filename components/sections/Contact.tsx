@@ -30,7 +30,7 @@ export function Contact({
 }) {
   const t = ui[lang].contact;
   return (
-    <section aria-labelledby="contact-title" className="shell py-24 lg:py-36">
+    <section aria-labelledby="contact-title" className="shell py-16 sm:py-24 lg:py-36">
       <SectionLabel index={index}>{t.label}</SectionLabel>
 
       <Reveal>
@@ -38,10 +38,11 @@ export function Contact({
           id="contact-title"
           className="mt-8 text-[clamp(2.75rem,9vw,7.5rem)] font-medium leading-[0.95] tracking-[-0.045em]"
         >
-          {t.title[0]}
+          {t.title[0]}{" "}
           <br />
           {t.title[1]}<span className="text-accent">.</span>
         </Heading>
+        <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted">{t.availability}</p>
       </Reveal>
 
       <Reveal delay={0.1} className="mt-14">

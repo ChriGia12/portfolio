@@ -12,7 +12,7 @@ export function ProjectHeader({ lang, project }: { lang: Locale; project: Projec
   const t = ui[lang];
   return (
     <header className="shell pt-10 sm:pt-16">
-      <Link href={href(lang, "/projects")} className="label text-muted transition-colors hover:text-fg">
+      <Link href={href(lang, "/projects")} className="label inline-flex h-11 items-center text-muted transition-colors hover:text-fg">
         ← {t.projects.back}
       </Link>
 
@@ -52,7 +52,12 @@ export function ProjectHeader({ lang, project }: { lang: Locale; project: Projec
         ))}
       </dl>
 
-      <div className="group relative mt-2 aspect-[4/3] overflow-hidden border border-line bg-surface sm:aspect-[16/9] lg:aspect-[21/9]">
+      {/* photos get a taller frame on phones; drawings are wide, so they keep 16:9 */}
+      <div
+        className={`group relative mt-2 overflow-hidden border border-line bg-surface sm:aspect-[16/9] lg:aspect-[21/9] ${
+          project.cover?.src ? "aspect-[4/3]" : "aspect-[16/9]"
+        }`}
+      >
         {project.cover?.src ? (
           <Image
             src={asset(project.cover.src)}

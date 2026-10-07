@@ -8,7 +8,7 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
 export function About({ lang, index }: { lang: Locale; index?: string }) {
   const t = ui[lang];
   return (
-    <section aria-labelledby="about-title" className="shell py-24 lg:py-36">
+    <section aria-labelledby="about-title" className="shell py-16 sm:py-24 lg:py-36">
       <div className="grid gap-x-8 gap-y-8 lg:grid-cols-12">
         <div className="lg:col-span-3">
           <SectionLabel index={index}>

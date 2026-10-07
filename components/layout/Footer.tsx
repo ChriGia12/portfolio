@@ -17,7 +17,7 @@ export function Footer({ lang }: { lang: Locale }) {
         </div>
 
         <nav aria-label={t.a11y.footer}>
-          <ul className="label flex flex-wrap gap-x-6 gap-y-3 text-muted">
+          <ul className="label flex flex-wrap gap-x-6 text-muted [&_a]:inline-block [&_a]:py-3">
             {nav.map((item) => (
               <li key={item.path}>
                 <Link href={href(lang, item.path)} className="transition-colors hover:text-fg">

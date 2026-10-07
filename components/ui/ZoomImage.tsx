@@ -46,9 +46,10 @@ export function ZoomImage({
         <Image src={src} alt={alt} fill sizes={sizes} priority={priority} className={className} />
         <span
           aria-hidden
-          className="label absolute bottom-3 right-3 bg-bg/80 px-2 py-1 text-fg opacity-0 transition-opacity duration-300 group-hover/zoom:opacity-100 group-focus-visible/zoom:opacity-100"
+          className="label absolute bottom-2 right-2 bg-bg/80 px-2 py-1 text-fg transition-opacity duration-300 sm:bottom-3 sm:right-3 sm:opacity-0 sm:group-hover/zoom:opacity-100 sm:group-focus-visible/zoom:opacity-100"
         >
-          {zoomLabel} ⤢
+          {/* always visible on phones, where there is no hover */}
+          <span className="hidden sm:inline">{zoomLabel} </span>⤢
         </span>
       </button>
 

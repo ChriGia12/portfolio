@@ -32,16 +32,18 @@ export default async function AboutPage(props: PageProps<"/[lang]/about">) {
         </h1>
 
         <div className="mt-16 grid gap-x-8 gap-y-12 lg:mt-24 lg:grid-cols-12">
-          <Reveal className="lg:col-span-4">
-            {/* Add a portrait: set `src: "/portrait.jpg"` and put the file in /public. */}
-            <MediaFrame
-              lang={lang}
-              media={{ kind: "image", label: t.about.portrait, aspect: "3/4", hint: "/public/portrait.jpg" }}
-              sizes="(min-width: 1024px) 33vw, 100vw"
-            />
-          </Reveal>
+          {/* The portrait appears only once `portrait` is set in content/site.ts. */}
+          {site.portrait && (
+            <Reveal className="lg:col-span-4">
+              <MediaFrame
+                lang={lang}
+                media={{ kind: "image", label: t.about.portrait, aspect: "3/4", src: site.portrait, alt: site.name }}
+                sizes="(min-width: 1024px) 33vw, 100vw"
+              />
+            </Reveal>
+          )}
 
-          <Reveal delay={0.08} className="lg:col-span-7 lg:col-start-6">
+          <Reveal delay={0.08} className={site.portrait ? "lg:col-span-7 lg:col-start-6" : "lg:col-span-8"}>
             <div className="space-y-6 text-lg leading-relaxed text-muted">
               {t.about.paragraphs.map((p, i) => (
                 <p key={i} className={i === 0 ? "text-xl text-fg/90" : undefined}>

@@ -22,6 +22,8 @@ export async function generateMetadata(
   const project = isLocale(lang) ? getProject(lang, slug) : undefined;
   if (!project || !isLocale(lang)) return {};
   const path = `/projects/${project.slug}`;
+  // Projects without their own picture fall back to the site-wide preview image.
+  const shareImage = project.shareImage ?? "/og.png";
   return {
     title: project.title,
     description: project.summary,
@@ -31,7 +33,9 @@ export async function generateMetadata(
       title: project.title,
       description: project.summary,
       url: `/${lang}${path}`,
+      images: [{ url: shareImage, alt: project.title }],
     },
+    twitter: { card: "summary_large_image", title: project.title, description: project.summary, images: [shareImage] },
   };
 }
 

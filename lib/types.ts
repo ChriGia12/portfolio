@@ -93,6 +93,8 @@ export type Project = {
   /** Real cover image. If undefined the generated `coverArt` drawing is used. */
   cover?: Media;
   coverArt: CoverArtKind;
+  /** Picture used when the project page is shared (LinkedIn, chat previews). Path from /public. */
+  shareImage?: string;
   /** External links shown under the title, e.g. live app or repository. */
   links?: { label: string; href: string }[];
   objectives?: string[];

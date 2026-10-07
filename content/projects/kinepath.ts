@@ -11,6 +11,7 @@ const shared = {
   year: "2026",
   status: "completed",
   coverArt: "slicer",
+  shareImage: `${img}/demo-poster.jpg`,
   stack: ["TypeScript", "Three.js", "WebAssembly", "OpenCascade", "KRL", "Vitest", "Playwright"],
   // cover: { kind: "screenshot", label: "KinePath", src: "/projects/kinepath/cover.png", alt: "…" },
 } as const;
@@ -26,7 +27,7 @@ export const kinepath: Record<Locale, Project> = {
     summary:
       "A browser application that takes a CAD model or mesh to a KUKA .src program: orientation, slicing, toolpath, reach and collision checks, KRL export.",
     intro:
-      "A personal software project that grew out of the laboratory work on the KUKA. It replaces the Rhino and Grasshopper chain with one web application: load a part, choose how to print it, and download a robot program that has already been checked against the real cell. Everything runs in the browser; the model is never uploaded to a server.",
+      "A personal software project that grew out of the laboratory work on the KUKA. It replaces the Rhino and Grasshopper chain with one web application: load a part, choose how to print it, and download a robot program that has passed reachability and collision checks against the digital model of the robot cell. Everything runs in the browser; the model is never uploaded to a server.",
     links: [
       { label: "Open the app", href: app },
       { label: "Source code", href: repo },
@@ -60,7 +61,7 @@ export const kinepath: Record<Locale, Project> = {
         body: ["Four steps, one page, no installation."],
         bullets: [
           "Load a mesh or BREP model. Several parts can be placed on the table and are printed one after the other.",
-          "The application proposes the best orientation; you choose the print mode.",
+          "The application proposes the orientation with the best score among those it analyses; you choose the print mode.",
           "It computes the toolpath that follows the contour of the part within the set tolerance (0.2 mm by default), layer by layer.",
           "It exports the KUKA .src file, with BASE and TOOL, extruder I/O, LIN moves, shutdown and homing.",
         ],
@@ -99,7 +100,7 @@ export const kinepath: Record<Locale, Project> = {
         id: "checks",
         title: "Checks Before Export",
         body: [
-          "The download button stays disabled until the program has passed every check on the real cell geometry.",
+          "The download button stays disabled until the program has passed every check against the geometric model of the robot cell.",
         ],
         items: [
           {
@@ -145,7 +146,9 @@ export const kinepath: Record<Locale, Project> = {
       {
         id: "limits",
         title: "Limits",
-        body: ["The limits are stated in the tool, not hidden."],
+        body: [
+          "KinePath is a prototype in development, not certified for production use. Its limits are stated in the tool, not hidden.",
+        ],
         bullets: [
           "The collision check samples the geometry (points every 8 mm on the spindle, 25 mm on the arm) and ignores the upper arm and the robot base.",
           "The check of intermediate LIN points covers the programmed path, not the blended trajectory the controller runs with C_DIS.",
@@ -209,7 +212,7 @@ export const kinepath: Record<Locale, Project> = {
     summary:
       "Un’applicazione nel browser che porta un modello CAD o una mesh fino al programma KUKA .src: orientamento, slicing, toolpath, controlli di raggiungibilità e collisione, export KRL.",
     intro:
-      "Un progetto software personale nato dal lavoro in laboratorio sul KUKA. Sostituisce la catena Rhino e Grasshopper con un’unica applicazione web: carichi un pezzo, scegli come stamparlo e scarichi un programma robot già verificato sulla cella reale. Tutto gira nel browser; il modello non viene mai caricato su un server.",
+      "Un progetto software personale nato dal lavoro in laboratorio sul KUKA. Sostituisce la catena Rhino e Grasshopper con un’unica applicazione web: carichi un pezzo, scegli come stamparlo e scarichi un programma robot sottoposto ai controlli di raggiungibilità e collisione rispetto al modello digitale della cella. Tutto gira nel browser; il modello non viene mai caricato su un server.",
     links: [
       { label: "Apri l’applicazione", href: app },
       { label: "Codice sorgente", href: repo },
@@ -243,7 +246,7 @@ export const kinepath: Record<Locale, Project> = {
         body: ["Quattro passaggi, una pagina, nessuna installazione."],
         bullets: [
           "Carichi un modello mesh o BREP. Si possono disporre più pezzi sul piano, stampati uno dopo l’altro.",
-          "L’applicazione propone l’orientamento migliore; tu scegli la modalità di stampa.",
+          "L’applicazione propone l’orientamento con il punteggio più favorevole tra quelli analizzati; tu scegli la modalità di stampa.",
           "Calcola il toolpath che segue il contorno del pezzo entro la tolleranza impostata (0,2 mm di default), strato per strato.",
           "Esporta il file KUKA .src, con BASE e TOOL, I/O dell’estrusore, movimenti LIN, spegnimento e homing.",
         ],
@@ -282,7 +285,7 @@ export const kinepath: Record<Locale, Project> = {
         id: "checks",
         title: "Controlli prima dell’export",
         body: [
-          "Il pulsante di download resta disattivato finché il programma non ha superato ogni controllo sulla geometria reale della cella.",
+          "Il pulsante di download resta disattivato finché il programma non ha superato ogni controllo sul modello geometrico della cella robotica.",
         ],
         items: [
           {
@@ -298,7 +301,7 @@ export const kinepath: Record<Locale, Project> = {
             text: "Sbalzi oltre l’angolo critico, isole che partono nel vuoto e pareti più sottili di un cordone sono evidenziati sul pezzo e richiedono una conferma esplicita.",
           },
           {
-            title: "Nessun risultato superato",
+            title: "Nessun risultato obsoleto",
             text: "I parametri sono validati prima del calcolo, e un risultato si può scaricare solo quando l’ultimo calcolo è terminato.",
           },
         ],
@@ -328,7 +331,9 @@ export const kinepath: Record<Locale, Project> = {
       {
         id: "limits",
         title: "Limiti",
-        body: ["I limiti sono dichiarati nello strumento, non nascosti."],
+        body: [
+          "KinePath è un prototipo in sviluppo, non certificato per uso produttivo. I suoi limiti sono dichiarati nello strumento, non nascosti.",
+        ],
         bullets: [
           "Il controllo collisioni campiona la geometria (punti ogni 8 mm sul mandrino, 25 mm sul braccio) e ignora il braccio superiore e la base del robot.",
           "Il controllo dei punti intermedi dei LIN copre il percorso programmato, non la traiettoria raccordata che il controllore esegue con C_DIS.",

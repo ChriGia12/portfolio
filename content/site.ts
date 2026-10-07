@@ -22,6 +22,12 @@ export const site = {
     linkedin: "https://www.linkedin.com/in/christian-giancola",
   },
 
+  /**
+   * Portrait for the About page. Leave empty to show no picture; to add one,
+   * put the file in /public and write its path here, e.g. "/portrait.jpg".
+   */
+  portrait: "" as string,
+
   /** One PDF per language, in /public. Replace the files to update them. */
   cv: {
     en: `${basePath}/Resume_Christian_Giancola.pdf`,

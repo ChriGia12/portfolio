@@ -17,7 +17,7 @@ export function Hero({ lang }: { lang: Locale }) {
           <h1 className="text-[clamp(3rem,9.5vw,7.25rem)] font-medium leading-[0.92] tracking-[-0.045em]">
             {site.name.split(" ").map((word) => (
               <span key={word} className="block">
-                {word}
+                {word}{" "}
               </span>
             ))}
           </h1>

@@ -23,7 +23,12 @@ export function ProjectFeature({
   return (
     <article>
       <Link href={href(lang, `/projects/${project.slug}`)} className="group block">
-        <div className="relative aspect-[4/3] overflow-hidden border border-line bg-surface sm:aspect-[16/9]">
+        {/* photos get a taller frame on phones; drawings are wide, so they keep 16:9 */}
+        <div
+          className={`relative overflow-hidden border border-line bg-surface sm:aspect-[16/9] ${
+            project.cover?.src ? "aspect-[4/3]" : "aspect-[16/9]"
+          }`}
+        >
           <div className="absolute inset-0 transition-transform duration-[1100ms] ease-out-expo group-hover:scale-[1.03]">
             {project.cover?.src ? (
               <Image

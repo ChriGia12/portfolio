@@ -16,6 +16,7 @@ const shared = {
   year: "2026",
   status: "completed",
   coverArt: "toolpath",
+  shareImage: `${img}/cell.png`,
   stack: ["KUKA KR16", "Rhino", "Grasshopper", "KUKA|prc", "Python", "KRL"],
   // cover: { kind: "image", label: "Robot printing", src: "/projects/robotic-additive-manufacturing/cover.jpg", alt: "…" },
 } as const;
@@ -258,7 +259,7 @@ export const roboticAdditiveManufacturing: Record<Locale, Project> = {
         title: "Results",
         body: [
           "The workflow was put to the test with a series of prints of growing difficulty: a vase, a design chair, a honeycomb structure.",
-          "The most significant step came last: the first ironing pass on a non-planar object, with the robot following the curved surface instead of working in flat layers. The result is fair, and it shows clearly where to work next — a more even material flow, and a definitive implementation of the non-planar tool tilt.",
+          "The most significant step came last: the first ironing pass on a non-planar object, with the robot following the curved surface instead of working in flat layers. The test showed that non-planar ironing on the curved surface is feasible. The main issues observed are the evenness of the material flow and the definitive implementation of the non-planar tool tilt.",
         ],
         media: [
           {
@@ -438,7 +439,7 @@ export const roboticAdditiveManufacturing: Record<Locale, Project> = {
         title: "Risultati",
         body: [
           "Il workflow è stato messo alla prova con una serie di stampe via via più impegnative: un vaso, una sedia di design, una struttura a nido d’ape.",
-          "Il passo più significativo è arrivato per ultimo: la prima stampa in ironing su un oggetto non planare, con il robot che segue la superficie curva invece di procedere per strati piani. Il risultato è discreto e indica con chiarezza dove lavorare: una fuoriuscita del materiale più regolare e l’implementazione definitiva dell’inclinazione non planare dell’utensile.",
+          "Il passo più significativo è arrivato per ultimo: la prima stampa in ironing su un oggetto non planare, con il robot che segue la superficie curva invece di procedere per strati piani. La prova ha dimostrato la fattibilità dell’ironing non planare sulla superficie curva. Le principali criticità osservate riguardano la regolarità della fuoriuscita del materiale e l’implementazione definitiva dell’inclinazione non planare dell’utensile.",
         ],
         media: [
           {
