@@ -70,7 +70,7 @@ const en = {
     paragraphs: [
       "I’m Christian Giancola, a Mechanical Engineering student. Over the course of my studies my interest has moved steadily towards robotics, automation and the software that runs physical machines.",
       "I work between mechanical design, robotics and software development: modelling a part in CAD, planning how a robot should move to build it, and writing the code that turns that plan into motion. Robotic additive manufacturing on a 6-axis KUKA was where those pieces first came together for me.",
-      "Right now I’m developing KinePath, a web application that turns CAD models and meshes into toolpaths and KRL programs. Alongside it I’m setting up the design of a six-axis desktop robotic arm.",
+      "Right now I’m developing KinePath, a web application that turns CAD models and meshes into toolpaths and KRL programs. Alongside it I’m designing a six-axis desktop robotic arm: the CAD is complete and the first electronics are on order.",
     ],
     basedIn: "Based in",
     studyingAt: "Studying at",
@@ -188,7 +188,7 @@ const it: Dictionary = {
     paragraphs: [
       "Sono Christian Giancola, studente di Ingegneria Meccanica. Nel corso degli studi il mio interesse si è spostato sempre di più verso la robotica, l’automazione e il software che fa funzionare le macchine.",
       "Lavoro tra progettazione meccanica, robotica e sviluppo software: modellare un pezzo in CAD, pianificare come un robot deve muoversi per realizzarlo e scrivere il codice che trasforma quel piano in movimento. L’additive manufacturing robotico su un KUKA a 6 assi è stato il primo progetto in cui questi pezzi si sono uniti.",
-      "In questo momento sto sviluppando KinePath, un’applicazione web che trasforma modelli CAD e mesh in toolpath e programmi KRL. In parallelo sto impostando il progetto di un braccio robotico desktop a sei assi.",
+      "In questo momento sto sviluppando KinePath, un’applicazione web che trasforma modelli CAD e mesh in toolpath e programmi KRL. In parallelo sto progettando un braccio robotico desktop a sei assi: il CAD è completo e la prima elettronica è in ordine.",
     ],
     basedIn: "Dove vivo",
     studyingAt: "Dove studio",
