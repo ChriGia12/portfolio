@@ -53,6 +53,9 @@ export function Hero({ lang }: { lang: Locale }) {
               <ButtonLink href={site.links.linkedin} variant="text" external>
                 LinkedIn
               </ButtonLink>
+              <ButtonLink href={site.links.orbinel} variant="text" external>
+                Orbinel
+              </ButtonLink>
             </span>
           </div>
         </div>

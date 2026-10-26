@@ -35,6 +35,11 @@ export function Footer({ lang }: { lang: Locale }) {
                 LinkedIn ↗
               </a>
             </li>
+            <li>
+              <a href={site.links.orbinel} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-fg">
+                Orbinel ↗
+              </a>
+            </li>
           </ul>
         </nav>
       </div>

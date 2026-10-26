@@ -20,6 +20,7 @@ export const site = {
   links: {
     github: "https://github.com/ChriGia12",
     linkedin: "https://www.linkedin.com/in/christian-giancola",
+    orbinel: "https://orbinel.it/",
   },
 
   /**

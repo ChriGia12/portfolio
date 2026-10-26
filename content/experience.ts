@@ -6,6 +6,14 @@ export const experience: Record<Locale, ExperienceEntry[]> = {
   en: [
     {
       period: "2026 — Present",
+      title: "Founder & CEO",
+      organisation: "Orbinel Robotics",
+      type: "Experience",
+      description:
+        "Early-stage robotics project: modular, open robots and the tools to learn, simulate and build them. Designing Kheiron, a 6-axis 3D-printable arm; building Orbinel Motion, an open-source browser simulator that also drives the real robot; preparing a simulator-based robotics course for schools. orbinel.it",
+    },
+    {
+      period: "2026 — Present",
       title: "Industrial Robotics and Additive Manufacturing Intern",
       organisation: "University of Bologna · Montecuccolino Laboratory",
       type: "Internship",
@@ -30,6 +38,14 @@ export const experience: Record<Locale, ExperienceEntry[]> = {
     },
   ],
   it: [
+    {
+      period: "2026 — in corso",
+      title: "Founder & CEO",
+      organisation: "Orbinel Robotics",
+      type: "Experience",
+      description:
+        "Progetto di robotica in fase iniziale: robot modulari e aperti, e gli strumenti per impararli, simularli e costruirli. Progetto Kheiron, un braccio a 6 assi stampabile in 3D; sviluppo Orbinel Motion, un simulatore open source nel browser che comanda anche il robot reale; preparo un percorso di robotica per le scuole basato sul simulatore. orbinel.it",
+    },
     {
       period: "2026 — in corso",
       title: "Tirocinante in robotica industriale e manifattura additiva",
