@@ -55,7 +55,7 @@ export const desktopRoboticArm: Record<Locale, Project> = {
       { label: "Type", value: "6 axes · spherical wrist" },
       { label: "Actuators", value: "Feetech STS3215 · 12 V serial bus" },
       { label: "Reach", value: "≈ 400 mm with gripper" },
-      { label: "Status", value: "CAD complete · electronics on the bench · control panel ready" },
+      { label: "Status", value: "CAD complete · electronics on the bench · simulator online" },
     ],
     objectives: [
       "Six-axis desktop robot",
@@ -93,6 +93,10 @@ export const desktopRoboticArm: Record<Locale, Project> = {
           {
             date: "2026-10-24",
             text: "The arm has a name: Kheiron, the Greek form of Chiron, the centaur who taught Achilles, Jason and Asclepius. The name is traditionally linked to χείρ, “hand” — the same root as “surgery” — which fits a robot that is, above all, a hand that can be taught.",
+          },
+          {
+            date: "2026-10-25",
+            text: "Kheiron becomes the first robot of Orbinel Robotics, a project I started to make robotics something you can build and learn: the design files will be released for personal and school use (CC BY-NC-SA 4.0), the simulator is open source.",
           },
         ],
         media: [
@@ -207,6 +211,24 @@ export const desktopRoboticArm: Record<Locale, Project> = {
             date: "2026-10-24",
             text: "Control panel built as a local web app (JavaScript, three.js, Web Serial). It shows the arm in 3D from the CAD meshes and drives it from joint sliders or from a target point; it saves poses and plays them back as timed sequences with a countdown; it scans the servo bus, changes servo IDs, calibrates the zero and shows voltage, temperature, load and current live. Unsafe poses — joint limits, gripper against the table or the base — turn the model red and are never sent to the robot.",
           },
+          {
+            date: "2026-10-25",
+            text: "The control panel became Orbinel Motion, the open-source simulator of Orbinel Robotics (MIT licence), now online at orbinel.it/motion. New static analysis: link masses from the STL volumes, gravity torque on every joint with an adjustable payload, margins against the STS3215 continuous torque, the largest payload in the current pose, singularity warnings and a workspace cloud of 5000 random poses. Six lessons for schools run inside it, in Italian and English, with exercises that check themselves.",
+            media: [
+              {
+                kind: "screenshot",
+                label: "Orbinel Motion — torque analysis with 150 g in the gripper",
+                aspect: "4/3",
+                fit: "contain",
+                src: "/projects/orbinel-motion/analisi.jpg",
+                alt: "The arm reaching forward in 3D; on the right, joint sliders and bars with the torque and margin of each joint",
+              },
+            ],
+          },
+          {
+            date: "2026-10-26",
+            text: "Tools in the simulator: the gripper can be swapped for the parametric tools of Orbinel Parts (calibration stylus, marker holder, camera mount, suction cup holder, magnetic pick-up), mounted on the Kheiron tool interface at the J6 flange. Kinematics, tool centre point and torque analysis follow the tool: with the stylus instead of the gripper, the estimated payload in the test pose goes from about 220 g to 330 g.",
+          },
         ],
         media: [
           {
@@ -268,7 +290,7 @@ export const desktopRoboticArm: Record<Locale, Project> = {
       { label: "Tipo", value: "6 assi · polso sferico" },
       { label: "Attuatori", value: "Feetech STS3215 · bus seriale 12 V" },
       { label: "Sbraccio", value: "≈ 400 mm con pinza" },
-      { label: "Stato", value: "CAD completo · elettronica al banco · pannello di controllo pronto" },
+      { label: "Stato", value: "CAD completo · elettronica al banco · simulatore online" },
     ],
     objectives: [
       "Robot desktop a sei assi",
@@ -306,6 +328,10 @@ export const desktopRoboticArm: Record<Locale, Project> = {
           {
             date: "2026-10-24",
             text: "Il braccio ha un nome: Kheiron, la forma greca di Chirone, il centauro maestro di Achille, Giasone e Asclepio. Il nome è tradizionalmente legato a χείρ, «mano», la stessa radice di «chirurgia»: adatto a un robot che è prima di tutto una mano a cui si possono insegnare i movimenti.",
+          },
+          {
+            date: "2026-10-25",
+            text: "Kheiron diventa il primo robot di Orbinel Robotics, un progetto che ho avviato per rendere la robotica qualcosa da costruire e imparare: i file di progetto saranno rilasciati per uso personale e scolastico (CC BY-NC-SA 4.0), il simulatore è open source.",
           },
         ],
         media: [
@@ -419,6 +445,24 @@ export const desktopRoboticArm: Record<Locale, Project> = {
           {
             date: "2026-10-24",
             text: "Pannello di controllo realizzato come app web locale (JavaScript, three.js, Web Serial). Mostra il braccio in 3D con le mesh del CAD e lo muove dai cursori dei giunti o da un punto bersaglio; salva le pose e le riproduce in sequenze temporizzate con conto alla rovescia; cerca i servo sul bus, ne cambia l’ID, calibra lo zero e mostra in tempo reale tensione, temperatura, carico e corrente. Le pose pericolose (limiti dei giunti, pinza contro il tavolo o la base) colorano di rosso il modello e non vengono mai mandate al robot.",
+          },
+          {
+            date: "2026-10-25",
+            text: "Il pannello di controllo è diventato Orbinel Motion, il simulatore open source di Orbinel Robotics (licenza MIT), ora online su orbinel.it/motion. Nuova analisi statica: masse dei link dai volumi degli STL, coppia di gravità su ogni giunto con carico regolabile, margini rispetto alla coppia continua dello STS3215, carico massimo nella posa attuale, avvisi di singolarità e una nuvola dello spazio di lavoro con 5000 pose casuali. Dentro girano sei lezioni per le scuole, in italiano e in inglese, con esercizi che si verificano da soli.",
+            media: [
+              {
+                kind: "screenshot",
+                label: "Orbinel Motion — analisi delle coppie con 150 g in presa",
+                aspect: "4/3",
+                fit: "contain",
+                src: "/projects/orbinel-motion/analisi.jpg",
+                alt: "Il braccio proteso in avanti in 3D; a destra i cursori dei giunti e le barre con coppia e margine di ogni giunto",
+              },
+            ],
+          },
+          {
+            date: "2026-10-26",
+            text: "Utensili nel simulatore: la pinza si può sostituire con gli utensili parametrici di Orbinel Parts (stilo di calibrazione, portapennarello, attacco fotocamera, supporto per ventosa, presa magnetica), montati sull’attacco utensile di Kheiron sulla flangia di J6. Cinematica, punto utensile e analisi delle coppie seguono l’utensile: con lo stilo al posto della pinza il carico stimato nella posa di prova passa da circa 220 g a 330 g.",
           },
         ],
         media: [

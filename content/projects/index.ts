@@ -3,13 +3,14 @@ import type { Locale } from "@/lib/i18n";
 import { roboticAdditiveManufacturing } from "./robotic-additive-manufacturing";
 import { kinepath } from "./kinepath";
 import { desktopRoboticArm } from "./desktop-robotic-arm";
+import { orbinelMotion } from "./orbinel-motion";
 
 /**
  * To add a project: create a file next to this one that exports a
  * `Record<Locale, Project>` (same slug in both languages), then add it to
  * this array. Order here = order on the site.
  */
-const all: Record<Locale, Project>[] = [roboticAdditiveManufacturing, kinepath, desktopRoboticArm];
+const all: Record<Locale, Project>[] = [roboticAdditiveManufacturing, kinepath, desktopRoboticArm, orbinelMotion];
 
 /** Projects listed without a dedicated page. Move one to `all` when it gets a case study. */
 export const minorProjects: Record<Locale, MinorProject[]> = {
