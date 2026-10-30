@@ -13,7 +13,7 @@ const img = "/projects/desktop-robotic-arm";
 const status: Record<string, PhaseStatus> = {
   concept: "done",
   "mechanical-design": "in-progress",
-  "joint-prototyping": "planned",
+  "joint-prototyping": "in-progress",
   electronics: "in-progress",
   "control-software": "in-progress",
   kinematics: "in-progress",
@@ -55,7 +55,7 @@ export const desktopRoboticArm: Record<Locale, Project> = {
       { label: "Type", value: "6 axes · spherical wrist" },
       { label: "Actuators", value: "Feetech STS3215 · 12 V serial bus" },
       { label: "Reach", value: "≈ 400 mm with gripper" },
-      { label: "Status", value: "CAD complete · electronics on the bench · simulator online" },
+      { label: "Status", value: "CAD complete · first servo tested · simulator online" },
     ],
     objectives: [
       "Six-axis desktop robot",
@@ -173,7 +173,12 @@ export const desktopRoboticArm: Record<Locale, Project> = {
         summary:
           "First on the bench: one servo with the test kit, to measure real dimensions, backlash and torque before printing the joint.",
         goals: ["Measure the servo and its backlash", "Print and test the shoulder joint"],
-        updates: [],
+        updates: [
+          {
+            date: "2026-10-27",
+            text: "First servo measured with a calliper and compared with the manufacturer model used in the CAD: body 45.13 × 24.55 × 28.84 mm against 45.4 × 24.8 × 28.8, mounting bosses 34.78 mm apart against 34.7, shaft centred across the width and within 0.3 mm along the length. Every difference is inside the 0.2 mm clearance of the printed pockets, so the CAD stays as it is. Next: a thin test slice of the base, printed before the whole part, to check the pocket, the horn and the cable slot.",
+          },
+        ],
       },
       {
         id: "electronics",
@@ -193,6 +198,10 @@ export const desktopRoboticArm: Record<Locale, Project> = {
           {
             date: "2026-10-24",
             text: "Adapter, stop button and ESP32 boards arrived. The ESP32 is programmed from the command line and the Mac recognises both boards over USB. A first test program reads the stop button on a normally-closed contact: a broken wire counts as “pressed”, so a fault always stops the arm. The servo is due at the end of October.",
+          },
+          {
+            date: "2026-10-27",
+            text: "First servo on the bus. At first it did not answer: the adapter's jumpers were set for USB control instead of the UART from the ESP32; once moved, the servo replied at ID 1. The 12 V supply holds 12.4–12.5 V with the servo powered, at 26–28 °C. A ±5° move lands within 3 encoder steps. Stop-button test during a 60° move: the servo stops and holds its position, commands sent while the button is pressed are discarded, and after the release it does not restart on its own.",
           },
         ],
       },
@@ -228,6 +237,10 @@ export const desktopRoboticArm: Record<Locale, Project> = {
           {
             date: "2026-10-26",
             text: "Tools in the simulator: the gripper can be swapped for the parametric tools of Orbinel Parts (calibration stylus, marker holder, camera mount, suction cup holder, magnetic pick-up), mounted on the Kheiron tool interface at the J6 flange. Kinematics, tool centre point and torque analysis follow the tool: with the stylus instead of the gripper, the estimated payload in the test pose goes from about 220 g to 330 g.",
+          },
+          {
+            date: "2026-10-27",
+            text: "First real servo driven from the panel. Two new commands for switching the arm on and off. When unpowered, Kheiron lies on the table: “Go home” switches the torque on while holding the current position, then lifts the arm one joint at a time, starting from the shoulder and ending with the base, at half the maximum speed. “Park” runs the same path in reverse, lowers the arm until the gripper and wrist rest on the table, then turns the torque off so the arm is not pushing against it. Connecting the robot never moves it on its own.",
           },
         ],
         media: [
@@ -290,7 +303,7 @@ export const desktopRoboticArm: Record<Locale, Project> = {
       { label: "Tipo", value: "6 assi · polso sferico" },
       { label: "Attuatori", value: "Feetech STS3215 · bus seriale 12 V" },
       { label: "Sbraccio", value: "≈ 400 mm con pinza" },
-      { label: "Stato", value: "CAD completo · elettronica al banco · simulatore online" },
+      { label: "Stato", value: "CAD completo · primo servo provato · simulatore online" },
     ],
     objectives: [
       "Robot desktop a sei assi",
@@ -408,7 +421,12 @@ export const desktopRoboticArm: Record<Locale, Project> = {
         summary:
           "Per prima cosa sul banco: un servo con il kit di prova, per misurare dimensioni reali, gioco e coppia prima di stampare il giunto.",
         goals: ["Misurare il servo e il suo gioco", "Stampare e provare il giunto della spalla"],
-        updates: [],
+        updates: [
+          {
+            date: "2026-10-27",
+            text: "Primo servo misurato col calibro e confrontato con il modello del produttore usato nel CAD: corpo 45,13 × 24,55 × 28,84 mm contro 45,4 × 24,8 × 28,8, distanza tra i perni di fissaggio 34,78 mm contro 34,7, albero centrato sulla larghezza ed entro 0,3 mm sulla lunghezza. Tutte le differenze stanno nel gioco di 0,2 mm delle sedi stampate, quindi il CAD resta così. Prossimo passo: una fetta sottile della base, stampata prima del pezzo intero, per provare sede, squadretta e fessura dei cavi.",
+          },
+        ],
       },
       {
         id: "electronics",
@@ -428,6 +446,10 @@ export const desktopRoboticArm: Record<Locale, Project> = {
           {
             date: "2026-10-24",
             text: "Arrivati adattatore, fungo e schedine ESP32. L’ESP32 si programma da riga di comando e il Mac riconosce entrambe le schede via USB. Un primo programma di prova legge il fungo su un contatto normalmente chiuso: un filo staccato vale come «premuto», quindi un guasto ferma sempre il braccio. Il servo arriva a fine ottobre.",
+          },
+          {
+            date: "2026-10-27",
+            text: "Primo servo sul bus. All’inizio non rispondeva: i ponticelli dell’adattatore erano impostati per il comando via USB invece che per la UART dell’ESP32; spostati quelli, il servo ha risposto con ID 1. L’alimentatore da 12 V tiene 12,4–12,5 V con il servo alimentato, a 26–28 °C. Un movimento di ±5° arriva entro 3 passi dell’encoder. Prova del fungo durante un movimento di 60°: il servo si ferma e tiene la posizione, i comandi mandati a fungo premuto vengono scartati e, una volta sbloccato, non riparte da solo.",
           },
         ],
       },
@@ -463,6 +485,10 @@ export const desktopRoboticArm: Record<Locale, Project> = {
           {
             date: "2026-10-26",
             text: "Utensili nel simulatore: la pinza si può sostituire con gli utensili parametrici di Orbinel Parts (stilo di calibrazione, portapennarello, attacco fotocamera, supporto per ventosa, presa magnetica), montati sull’attacco utensile di Kheiron sulla flangia di J6. Cinematica, punto utensile e analisi delle coppie seguono l’utensile: con lo stilo al posto della pinza il carico stimato nella posa di prova passa da circa 220 g a 330 g.",
+          },
+          {
+            date: "2026-10-27",
+            text: "Primo servo vero comandato dal pannello. Due nuovi comandi per accendere e spegnere il braccio. Da spento Kheiron è sdraiato sul tavolo: «Vai in home» accende la coppia tenendo la posizione attuale, poi alza il braccio un giunto alla volta, partendo dalla spalla e finendo con la base, a metà della velocità massima. «Parcheggia» fa lo stesso percorso al contrario, abbassa il braccio finché pinza e polso poggiano sul tavolo, poi spegne la coppia, così il braccio non ci spinge contro. Collegare il robot non lo muove mai da solo.",
           },
         ],
         media: [

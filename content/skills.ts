@@ -20,8 +20,10 @@ export const skills: Record<Locale, SkillArea[]> = {
       items: [
         "Python",
         "TypeScript",
+        "JavaScript",
         "Grasshopper",
         "Three.js",
+        "Web Serial",
         "Testing (Vitest, Playwright)",
         "C / C++ (basic)",
       ],
@@ -31,6 +33,7 @@ export const skills: Record<Locale, SkillArea[]> = {
       items: [
         "Rhino",
         "CAD modelling (PTC Creo, AutoCAD)",
+        "Fusion (Python API)",
         "Mesh and BREP processing",
         "Planar and non-planar slicing",
         "Computational geometry",
@@ -42,6 +45,7 @@ export const skills: Record<Locale, SkillArea[]> = {
       items: [
         "Mechanical design",
         "Prototyping",
+        "Electronics (ESP32, serial-bus servos)",
         "Manufacturing processes",
         "Experimental validation",
       ],
@@ -65,8 +69,10 @@ export const skills: Record<Locale, SkillArea[]> = {
       items: [
         "Python",
         "TypeScript",
+        "JavaScript",
         "Grasshopper",
         "Three.js",
+        "Web Serial",
         "Testing (Vitest, Playwright)",
         "C / C++ (base)",
       ],
@@ -76,6 +82,7 @@ export const skills: Record<Locale, SkillArea[]> = {
       items: [
         "Rhino",
         "Modellazione CAD (PTC Creo, AutoCAD)",
+        "Fusion (API Python)",
         "Elaborazione di mesh e BREP",
         "Slicing planare e non planare",
         "Geometria computazionale",
@@ -87,6 +94,7 @@ export const skills: Record<Locale, SkillArea[]> = {
       items: [
         "Progettazione meccanica",
         "Prototipazione",
+        "Elettronica (ESP32, servo a bus seriale)",
         "Processi di produzione",
         "Validazione sperimentale",
       ],

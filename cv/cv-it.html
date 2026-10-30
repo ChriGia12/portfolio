@@ -5,7 +5,7 @@
 <title>Christian Giancola — Curriculum Vitae</title>
 <meta name="author" content="Christian Giancola">
 <style>
-  /* One A4 page. Plain system font and no ligatures, so the text extracts cleanly (ATS). */
+  /* A4 pages. Plain system font and no ligatures, so the text extracts cleanly (ATS). */
   @page { size: A4; margin: 13mm 15mm 12mm; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: Arial, Helvetica, sans-serif; font-size: 9.1pt; line-height: 1.36; color: #1a1a1c; font-variant-ligatures: none; font-kerning: none; }
@@ -23,6 +23,8 @@
   ul { margin: 2pt 0 0 11pt; }
   li { margin-top: 1.2pt; }
   .item + .item { margin-top: 6pt; }
+  .item, .skills { break-inside: avoid; }
+  h2 { break-after: avoid; }
   .skills p { margin-top: 2pt; }
   .skills b, .inline b { font-weight: 700; }
   .inline { margin-top: 2pt; }
@@ -41,11 +43,21 @@
 </p>
 
 <h2>Profilo</h2>
-<p>Laureando in Ingegneria Meccanica con esperienza pratica in robotica industriale, automazione e manifattura additiva. Programmo e verifico sistemi robotici KUKA, sviluppo workflow in Rhino e Grasshopper e postprocessori Python che trasformano geometrie e toolpath in programmi KRL. Unisco progettazione meccanica, modellazione parametrica, simulazione robotica e sviluppo software per risolvere problemi di produzione reali.</p>
+<p>Laureando in Ingegneria Meccanica con esperienza pratica in robotica industriale, automazione e manifattura additiva. Programmo e verifico sistemi robotici KUKA, sviluppo workflow in Rhino e Grasshopper e postprocessori Python che trasformano geometrie e toolpath in programmi KRL. Unisco progettazione meccanica, modellazione parametrica, simulazione robotica e sviluppo software per risolvere problemi di produzione reali. Ho fondato Orbinel Robotics, dove progetto Kheiron, un braccio robotico desktop a 6 assi, e il suo simulatore open source.</p>
 
 <h2>Esperienza</h2>
 <div class="item">
-  <div class="row"><span class="what">Tirocinante in robotica industriale e manifattura additiva <span class="org">| Università di Bologna</span></span><span class="when">2026 – in corso</span></div>
+  <div class="row"><span class="what">Founder &amp; CEO <span class="org">| Orbinel Robotics · <a href="https://orbinel.it/">orbinel.it</a></span></span><span class="when">2026 – in corso</span></div>
+  <p class="place">Startup di robotica in fase iniziale, Bologna</p>
+  <ul>
+    <li>Fondazione e guida di una startup di robotica modulare e aperta: robot stampabili in 3D, componenti con attacco standard, un simulatore open source e un percorso di robotica per le scuole.</li>
+    <li>Progettazione del primo robot, Kheiron (braccio desktop a 6 assi), e sviluppo di Orbinel Motion, il software che lo simula e lo comanda.</li>
+    <li>Coordinamento di un team di tre studenti di ingegneria: applicazioni robotiche, firmware C++ e controllo, montaggio, prove e verifiche FEM.</li>
+    <li>Sito bilingue con lista d’attesa e newsletter, moduli conformi al GDPR e un generatore parametrico di utensili che gira nel browser.</li>
+  </ul>
+</div>
+<div class="item">
+  <div class="row"><span class="what">Tirocinante in robotica industriale e manifattura additiva <span class="org">| Università di Bologna</span></span><span class="when">mar 2026 – ott 2026</span></div>
   <p class="place">Laboratorio di Montecuccolino, Bologna</p>
   <ul>
     <li>Sviluppo di toolpath per deposizione robotizzata con robot KUKA a 6 assi, con Rhino 8, Grasshopper e KUKA|prc.</li>
@@ -59,6 +71,21 @@
 </div>
 
 <h2>Progetti</h2>
+<div class="item">
+  <div class="row"><span class="what">Kheiron, braccio robotico desktop a 6 assi <span class="org">| Orbinel Robotics · <a href="https://orbinel.it/kheiron.html">orbinel.it/kheiron</a></span></span><span class="when">2026 – in corso</span></div>
+  <ul>
+    <li>Progettato da zero con polso sferico: CAD completo generato da script Python con le API di Fusion, pezzi stampabili in 3D, due servo sulla spalla per la coppia richiesta.</li>
+    <li>Servo Feetech STS3215 a bus seriale e ESP32 come ponte: il firmware gestisce da solo l’arresto di emergenza, anche se il computer si blocca.</li>
+    <li>Cinematica diretta e inversa in forma chiusa, verificata su 2000 pose casuali; primo servo provato e misurato al banco.</li>
+  </ul>
+</div>
+<div class="item">
+  <div class="row"><span class="what">Orbinel Motion <span class="org">| Simulatore open source · <a href="https://orbinel.it/motion/">orbinel.it/motion</a></span></span><span class="when">2026</span></div>
+  <ul>
+    <li>Simulatore web (JavaScript, Three.js, Web Serial) con cinematica, controllo di limiti e collisioni, coppie di gravità su ogni giunto e spazio di lavoro; comanda il robot reale via USB.</li>
+    <li>Sei lezioni per le scuole con esercizi che si verificano da soli e utensili intercambiabili montati sulla flangia del robot.</li>
+  </ul>
+</div>
 <div class="item">
   <div class="row"><span class="what">KinePath <span class="org">| Progetto software personale · <a href="https://chrigia12.github.io/KinePath/">chrigia12.github.io/KinePath</a></span></span><span class="when">2026</span></div>
   <ul>
@@ -92,11 +119,12 @@
 
 <h2>Competenze tecniche</h2>
 <div class="skills">
-  <p><b>Robotica e automazione:</b> KUKA KRL, KUKA|prc, programmazione offline, simulazione, toolpath, robot a 6 assi, assi esterni</p>
+  <p><b>Robotica e automazione:</b> KUKA KRL, KUKA|prc, programmazione offline, simulazione, toolpath, robot a 6 assi, assi esterni, cinematica diretta e inversa</p>
   <p><b>Manifattura:</b> deposizione robotizzata, slicing planare e non planare, continuità del percorso, orientamento utensile, estrusione</p>
-  <p><b>Sviluppo software:</b> Python, TypeScript, C++, Three.js, postprocessing, elaborazione di dati geometrici, test automatici</p>
+  <p><b>Sviluppo software:</b> Python, TypeScript, JavaScript, C++, Three.js, Web Serial, postprocessing, elaborazione di dati geometrici, test automatici</p>
   <p><b>Progettazione parametrica:</b> Rhino 8, Grasshopper, curve, superfici, BREP, mesh, geometria computazionale</p>
-  <p><b>CAD e disegno:</b> PTC Creo, AutoCAD, modellazione 3D, lettura e produzione di disegni tecnici</p>
+  <p><b>CAD e disegno:</b> PTC Creo, AutoCAD, Autodesk Fusion (API Python), modellazione 3D, lettura e produzione di disegni tecnici</p>
+  <p><b>Elettronica:</b> ESP32 (Arduino), servo a bus seriale, UART, arresto di emergenza</p>
   <p><b>Metodo:</b> prototipazione, test sperimentali, troubleshooting, documentazione tecnica, validazione dei risultati</p>
 </div>
 

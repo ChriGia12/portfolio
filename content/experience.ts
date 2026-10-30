@@ -10,10 +10,10 @@ export const experience: Record<Locale, ExperienceEntry[]> = {
       organisation: "Orbinel Robotics",
       type: "Experience",
       description:
-        "Early-stage robotics project: modular, open robots and the tools to learn, simulate and build them. Designing Kheiron, a 6-axis 3D-printable arm; building Orbinel Motion, an open-source browser simulator that also drives the real robot; preparing a simulator-based robotics course for schools. orbinel.it",
+        "Early-stage robotics project: modular, open robots and the tools to learn, simulate and build them. Designing Kheiron, a 6-axis 3D-printable arm; building Orbinel Motion, an open-source browser simulator that also drives the real robot; preparing a simulator-based robotics course for schools. Coordinating a team of three engineering students covering robot applications, firmware and controls, assembly and testing. orbinel.it",
     },
     {
-      period: "2026 — Present",
+      period: "Mar — Oct 2026",
       title: "Industrial Robotics and Additive Manufacturing Intern",
       organisation: "University of Bologna · Montecuccolino Laboratory",
       type: "Internship",
@@ -44,10 +44,10 @@ export const experience: Record<Locale, ExperienceEntry[]> = {
       organisation: "Orbinel Robotics",
       type: "Experience",
       description:
-        "Progetto di robotica in fase iniziale: robot modulari e aperti, e gli strumenti per impararli, simularli e costruirli. Progetto Kheiron, un braccio a 6 assi stampabile in 3D; sviluppo Orbinel Motion, un simulatore open source nel browser che comanda anche il robot reale; preparo un percorso di robotica per le scuole basato sul simulatore. orbinel.it",
+        "Progetto di robotica in fase iniziale: robot modulari e aperti, e gli strumenti per impararli, simularli e costruirli. Progetto Kheiron, un braccio a 6 assi stampabile in 3D; sviluppo Orbinel Motion, un simulatore open source nel browser che comanda anche il robot reale; preparo un percorso di robotica per le scuole basato sul simulatore. Coordino un team di tre studenti di ingegneria: applicazioni robotiche, firmware e controllo, montaggio e prove. orbinel.it",
     },
     {
-      period: "2026 — in corso",
+      period: "Mar — ott 2026",
       title: "Tirocinante in robotica industriale e manifattura additiva",
       organisation: "Università di Bologna · Laboratorio di Montecuccolino",
       type: "Internship",

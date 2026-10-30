@@ -46,11 +46,11 @@ Contacts, CVs, university and experience are real. Still to complete:
 
 The site serves `public/CV_Christian_Giancola.pdf` on the Italian pages and
 `public/Resume_Christian_Giancola.pdf` on the English ones. Their sources are
-`cv/cv-it.html` and `cv/cv-en.html`: one A4 page each, plain font and real text
+`cv/cv-it.html` and `cv/cv-en.html`: A4, two pages each, plain font and real text
 so that applicant-tracking systems can read them.
 
 To update a CV, edit the HTML, open it in Chrome, print it (Cmd+P) to PDF with
-margins "Default" and headers/footers off, check it is still one page, and save
+margins "Default" and headers/footers off, check that no entry is split across the two pages, and save
 it over the file in `public/`.
 
 ## Adding images and video
