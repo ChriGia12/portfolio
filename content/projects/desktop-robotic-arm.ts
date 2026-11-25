@@ -55,7 +55,7 @@ export const desktopRoboticArm: Record<Locale, Project> = {
       { label: "Type", value: "6 axes · spherical wrist" },
       { label: "Actuators", value: "Feetech STS3215 · 12 V serial bus" },
       { label: "Reach", value: "≈ 400 mm with gripper" },
-      { label: "Status", value: "CAD complete · first servo tested · simulator online" },
+      { label: "Status", value: "CAD complete · all 8 servos tested · simulator online" },
     ],
     objectives: [
       "Six-axis desktop robot",
@@ -203,6 +203,10 @@ export const desktopRoboticArm: Record<Locale, Project> = {
             date: "2026-10-27",
             text: "First servo on the bus. At first it did not answer: the adapter's jumpers were set for USB control instead of the UART from the ESP32; once moved, the servo replied at ID 1. The 12 V supply holds 12.4–12.5 V with the servo powered, at 26–28 °C. A ±5° move lands within 3 encoder steps. Stop-button test during a 60° move: the servo stops and holds its position, commands sent while the button is pressed are discarded, and after the release it does not restart on its own.",
           },
+          {
+            date: "2026-11-25",
+            text: "The other seven servos arrived: all eight are now on the bus, daisy-chained on the bench and not yet mounted on the arm. They all answer at 12 V, and each one got its own address from the computer, in chain order: J1 at ID 1, the two shoulder servos at 2 and 3, the elbow at 4, the wrist at 5, 6 and 7, the gripper at 8.",
+          },
         ],
       },
       {
@@ -241,6 +245,10 @@ export const desktopRoboticArm: Record<Locale, Project> = {
           {
             date: "2026-10-27",
             text: "First real servo driven from the panel. Two new commands for switching the arm on and off. When unpowered, Kheiron lies on the table: “Go home” switches the torque on while holding the current position, then lifts the arm one joint at a time, starting from the shoulder and ending with the base, at half the maximum speed. “Park” runs the same path in reverse, lowers the arm until the gripper and wrist rest on the table, then turns the torque off so the arm is not pushing against it. Connecting the robot never moves it on its own.",
+          },
+          {
+            date: "2026-11-25",
+            text: "First test of all eight servos together, driven from Orbinel Motion: a sequence of 21 poses, about 72 seconds, that moves every joint and opens and closes the gripper. Every pose and every transition was checked first by the simulator's safety rules; two poses that brought the gripper against the table were corrected before running. All servos completed the sequence. Afterwards they read 31–34 °C, up from 18–21 °C at rest, with the supply steady at 12.3–12.5 V.",
           },
         ],
         media: [
@@ -303,7 +311,7 @@ export const desktopRoboticArm: Record<Locale, Project> = {
       { label: "Tipo", value: "6 assi · polso sferico" },
       { label: "Attuatori", value: "Feetech STS3215 · bus seriale 12 V" },
       { label: "Sbraccio", value: "≈ 400 mm con pinza" },
-      { label: "Stato", value: "CAD completo · primo servo provato · simulatore online" },
+      { label: "Stato", value: "CAD completo · tutti gli 8 servo provati · simulatore online" },
     ],
     objectives: [
       "Robot desktop a sei assi",
@@ -451,6 +459,10 @@ export const desktopRoboticArm: Record<Locale, Project> = {
             date: "2026-10-27",
             text: "Primo servo sul bus. All’inizio non rispondeva: i ponticelli dell’adattatore erano impostati per il comando via USB invece che per la UART dell’ESP32; spostati quelli, il servo ha risposto con ID 1. L’alimentatore da 12 V tiene 12,4–12,5 V con il servo alimentato, a 26–28 °C. Un movimento di ±5° arriva entro 3 passi dell’encoder. Prova del fungo durante un movimento di 60°: il servo si ferma e tiene la posizione, i comandi mandati a fungo premuto vengono scartati e, una volta sbloccato, non riparte da solo.",
           },
+          {
+            date: "2026-11-25",
+            text: "Arrivati gli altri sette servo: adesso sono tutti e otto sul bus, collegati in serie al banco e non ancora montati sul braccio. Rispondono tutti a 12 V e a ognuno ho dato il suo indirizzo dal computer, nell’ordine della catena: J1 con ID 1, i due servo della spalla con 2 e 3, il gomito con 4, il polso con 5, 6 e 7, la pinza con 8.",
+          },
         ],
       },
       {
@@ -489,6 +501,10 @@ export const desktopRoboticArm: Record<Locale, Project> = {
           {
             date: "2026-10-27",
             text: "Primo servo vero comandato dal pannello. Due nuovi comandi per accendere e spegnere il braccio. Da spento Kheiron è sdraiato sul tavolo: «Vai in home» accende la coppia tenendo la posizione attuale, poi alza il braccio un giunto alla volta, partendo dalla spalla e finendo con la base, a metà della velocità massima. «Parcheggia» fa lo stesso percorso al contrario, abbassa il braccio finché pinza e polso poggiano sul tavolo, poi spegne la coppia, così il braccio non ci spinge contro. Collegare il robot non lo muove mai da solo.",
+          },
+          {
+            date: "2026-11-25",
+            text: "Prima prova di tutti e otto i servo insieme, comandati da Orbinel Motion: una sequenza di 21 pose, circa 72 secondi, che muove ogni giunto e apre e chiude la pinza. Ogni posa e ogni passaggio sono stati prima verificati dai controlli di sicurezza del simulatore; due pose che portavano la pinza contro il tavolo sono state corrette prima di partire. Tutti i servo hanno completato la sequenza. Alla fine segnavano 31–34 °C, partendo da 18–21 °C a riposo, con l’alimentazione stabile a 12,3–12,5 V.",
           },
         ],
         media: [
